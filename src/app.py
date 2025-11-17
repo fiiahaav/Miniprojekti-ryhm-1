@@ -3,15 +3,7 @@ import psycopg2
 
 app = Flask(__name__)
 
-# Yhteys tietokantaan
-def get_db_connection():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="maisterityo",
-        user="bjorn",
-        password="salasana"
-    )
-    return conn
+#Tää on pahasti kesken
 
 #Tässä toi landing page lista jossa lähteet jne
 @app.route("/")
