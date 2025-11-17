@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Meidän landingpage</title>
+    <title>Lähde Kirjasto</title>
 </head>
 <body>
-    <h1>Hello World! :D</h1>
+    <h1>Lähde Kirjasto</h1>
+
+    <h2>Kaikki lähteet (ole hyvä)</h2>
+    <ul>
+        {% for author in authors %}
+            <li>{{ author[1] }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('add_author') }}">
+        <button>Lisää lähde</button>
+    </a>
 </body>
 </html>
