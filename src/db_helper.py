@@ -1,0 +1,1 @@
+# Tietokantayhteyden alustus
