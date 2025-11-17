@@ -1,0 +1,1 @@
+# Konfiguraatiot (tietokannan osoite)
