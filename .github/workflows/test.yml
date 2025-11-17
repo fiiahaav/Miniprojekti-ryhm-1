@@ -22,5 +22,4 @@ jobs:
         poetry install
     - name: Run tests
       run: |
-        cd src
-        pytest tests
+       poetry run pytest
