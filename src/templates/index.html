@@ -8,8 +8,14 @@
 
     <h2>Kaikki lähteet (ole hyvä)</h2>
     <ul>
-        {% for author in authors %}
-            <li>{{ author[1] }}</li>
+        {% for ref in authors %}
+            <p>
+                <strong>{{ ref['title'] }}</strong><br>
+                {{ ref['name'] }}, {{ ref['year'] }}<br>
+                <a href="{{ ref['url'] }}">{{ ref['url'] }}</a><br>
+                {{ ref['notes'] }}
+            </p>
+            <br>
         {% endfor %}
     </ul>
 

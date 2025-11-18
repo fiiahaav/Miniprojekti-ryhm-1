@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
+from psycopg2 import extras
 
 app = Flask(__name__)
 
@@ -9,7 +10,8 @@ def get_db_connection():
         host="localhost",
         database="postgres",
         user="postgres",
-        password="salasana"
+        password="salasana",
+        cursor_factory=psycopg2.extras.DictCursor
     )
     return conn
 
@@ -29,9 +31,18 @@ def index():
 def add_author():
     if request.method == "POST":
         nimi = request.form["name"]
+        title = request.form["title"]
+        year = request.form.get("year")
+        url = request.form.get("url")
+        notes = request.form.get("notes")
+        
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute("INSERT INTO authors (name) VALUES (%s)", (nimi,))
+        cur.execute("""
+                    INSERT INTO authors (name, title, year, url, notes)
+                    VALUES (%s, %s, %s, %s, %s)
+              
+            """, (nimi, title, year, url, notes))
         conn.commit()
         cur.close()
         conn.close()
