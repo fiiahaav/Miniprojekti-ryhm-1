@@ -20,7 +20,7 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM authors ORDER BY id")
+    cur.execute("SELECT * FROM refs ORDER BY id")
     authors = cur.fetchall()
     cur.close()
     conn.close()
@@ -39,7 +39,7 @@ def add_author():
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
-                    INSERT INTO authors (name, title, year, url, notes)
+                    INSERT INTO refs (name, title, year, url, notes)
                     VALUES (%s, %s, %s, %s, %s)
               
             """, (nimi, title, year, url, notes))
