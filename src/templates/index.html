@@ -19,6 +19,14 @@
         {% endfor %}
     </ul>
 
+    <select name="lahde" id="lahde">
+        <option value="article">Artikkeli</option>
+        <option value="book">Kirja</option>
+        <option value="inproceedings">Inproceedings</option>
+        <option value="misc">Misc</option>
+
+    </select>
+
     <a href="{{ url_for('add_author') }}">
         <button>Lisää lähde</button>
     </a>
