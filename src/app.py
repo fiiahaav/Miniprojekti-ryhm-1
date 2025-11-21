@@ -20,13 +20,13 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM articles ORDER BY id")
+    cur.execute("SELECT * FROM articles ORDER BY id DESC")
     articles = cur.fetchall()
-    cur.execute("SELECT * FROM books ORDER BY id")
+    cur.execute("SELECT * FROM books ORDER BY id DESC")
     books = cur.fetchall()
-    cur.execute("SELECT * FROM inproceedings ORDER BY id")
+    cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
     inproceedings = cur.fetchall()
-    cur.execute("SELECT * FROM miscs ORDER BY id")
+    cur.execute("SELECT * FROM miscs ORDER BY id DESC")
     miscs = cur.fetchall()
 
     cur.close()
