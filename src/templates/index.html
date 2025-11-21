@@ -8,27 +8,60 @@
 
     <h2>Kaikki lähteet (ole hyvä)</h2>
     <ul>
-        {% for ref in authors %}
+        <h3>Artikkelit:</h3>
+        {% for art in articles %}
             <p>
-                <strong>{{ ref['title'] }}</strong><br>
-                {{ ref['name'] }}, {{ ref['year'] }}<br>
-                <a href="{{ ref['url'] }}">{{ ref['url'] }}</a><br>
-                {{ ref['notes'] }}
+                <strong>{{ art['title'] }}</strong><br>
+                {{ art['name'] }}, {{ art['year'] }}<br>
+                <a href="{{ art['url'] }}">{{ art['url'] }}</a><br>
+                {{ art['notes'] }}
+            </p>
+            <br>
+        {% endfor %}
+        <h3>Kirjat:</h3>
+        {% for book in books %}
+            <p>
+                <strong>{{ book['title'] }}</strong><br>
+                {{ book['name'] }}, {{ book['year'] }}<br>
+                {{ book['publisher'] }}<br>
+                {{ book['pages'] }}<br>
+                {{ book['notes'] }}
+            </p>
+            <br>
+        {% endfor %}
+        <h3>Inproceedings:</h3>
+        {% for inproc in inproceedings %}
+            <p>
+                <strong>{{ inproc['title'] }}</strong><br>
+                {{ inproc['booktitle'] }}<br>
+                {{ inproc['year'] }}<br>
+                {{ inproc['pages'] }}<br>
+                {{ inproc['notes'] }}
+            </p>
+            <br>
+        {% endfor %}
+        <h3>Misc:</h3>
+        {% for misc in miscs %}
+            <p>
+                <strong>{{ misc['title'] }}</strong><br>
+                {{ misc['name'] }}<br>
+                {{ misc['year'] }}<br>
+                <a href="{{ misc['url'] }}">{{ misc['url'] }}</a><br>
+                {{ misc['notes'] }}
             </p>
             <br>
         {% endfor %}
     </ul>
+    <form method="POST" action="{{ url_for('add_source') }}">
+        <select name="lahde" id="lahde">
+            <option value="article">Artikkeli</option>
+            <option value="book">Kirja</option>
+            <option value="inproceedings">Inproceedings</option>
+            <option value="misc">Misc</option>
 
-    <select name="lahde" id="lahde">
-        <option value="article">Artikkeli</option>
-        <option value="book">Kirja</option>
-        <option value="inproceedings">Inproceedings</option>
-        <option value="misc">Misc</option>
+        </select>
+        <button type="submit">Lisää lähde</button>
+    </form>
 
-    </select>
-
-    <a href="{{ url_for('add_author') }}">
-        <button>Lisää lähde</button>
-    </a>
 </body>
 </html>

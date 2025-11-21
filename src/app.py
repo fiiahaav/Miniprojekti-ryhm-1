@@ -21,10 +21,33 @@ def index():
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("SELECT * FROM articles ORDER BY id")
-    authors = cur.fetchall()
+    articles = cur.fetchall()
+    cur.execute("SELECT * FROM books ORDER BY id")
+    books = cur.fetchall()
+    cur.execute("SELECT * FROM inproceedings ORDER BY id")
+    inproceedings = cur.fetchall()
+    cur.execute("SELECT * FROM miscs ORDER BY id")
+    miscs = cur.fetchall()
+
     cur.close()
     conn.close()
-    return render_template("index.html", authors=authors)
+
+    return render_template("index.html", articles=articles, books=books, 
+                           inproceedings=inproceedings, miscs=miscs)
+
+
+@app.route('/add_source', methods=['POST'])
+def add_source():
+    source_type = request.form['lahde']
+
+    if source_type == "article":
+        return redirect(url_for('add_article'))
+    elif source_type == "book":
+        return redirect(url_for('add_book'))
+    elif source_type == "inproceedings":
+        return redirect(url_for('add_inproceedings'))
+    else:
+        return redirect(url_for('add_misc'))
 
 #Täällä voi lisätä lähteitä
 @app.route("/add_article", methods=["GET", "POST"])
