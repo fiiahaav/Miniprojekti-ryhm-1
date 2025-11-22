@@ -2,23 +2,26 @@
 <html>
 <head>
     <title>Lisää inproceedings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Lisää uusi inproceedings</h1>
 
     <p><strong>Pakolliset kentät on merkitty tähdellä (*):</strong></p>
     <form method="POST">
-        <input type="text" name="name" placeholder="Kirjoittajan nimi" required>*<br><br>
-        <input type="text" name="title" placeholder="Otsikko" required>*<br><br>
-        <input type="text" name="booktitle" placeholder="Kirjan otsikko" required>*<br><br>
-        <input type="number" name="year" placeholder="Vuosi" required>*<br><br>
+        <input type="text" name="name" placeholder="Kirjoittajan nimi" required>*<br>
+        <input type="text" name="title" placeholder="Otsikko" required>*<br>
+        <input type="text" name="booktitle" placeholder="Kirjan otsikko" required>*<br>
+        <input type="number" name="year" placeholder="Vuosi" required>*<br>
+
         <input type="text" name="pages" placeholder="Sivunumerot"><br><br>
         <input type="text" name="publisher" placeholder="Julkaisija"><br><br>
         <textarea name="notes" placeholder="Muistiinpanot"></textarea><br><br>
+
         <button type="submit">Lisää</button>
     </form>
 
     <br>
-    <a href="{{ url_for('index') }}">Takaisin landing pageen</a>
+    <a href="{{ url_for('index') }}" class="button-link">Takaisin etusivulle</a>
 </body>
 </html>
