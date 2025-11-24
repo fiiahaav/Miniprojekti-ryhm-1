@@ -1,0 +1,26 @@
+Sprint 1 Retrospektiivi:
+“Start, Stop, Continue”
+
+Start:
+
+- Selkeempi työnjako, kuka tekee mitäkin.
+
+- Parempi dokumentointi, sprint ja product backlogiin.
+
+- Parempi aikataulutus, kokonaisuudessaan (selkeyttää).
+
+Stop:
+
+- Huono kommunikointi / Ei kommunikointia.
+
+- Ei kysy jos ei osaa.
+
+- Ei päivitellä product backlogia eikä sprint backlogia.
+
+Continue:
+
+- Kaikki pyrkii tekemään mitä osaa.
+
+- Kaikki kyselee toisiltaa kysymkysiä jos jotain jää epäselväksi.
+
+- Kaikki toimii parhaalla tavalla oman aikataulun mukaan.
