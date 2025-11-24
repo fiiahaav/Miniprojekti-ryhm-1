@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 from psycopg2 import extras
 
+from util import to_int
+
 app = Flask(__name__)
 
 # Yhteys tietokantaan
@@ -53,20 +55,25 @@ def add_source():
 @app.route("/add_article", methods=["GET", "POST"])
 def add_article():
     if request.method == "POST":
-        nimi = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
-        year = request.form.get("year")
+        journal = request.form["journal"]
+        year = request.form["year"]
+        month = to_int(request.form.get("month"))
+        volume = request.form.get("volume")
+        number = request.form.get("number")
         pages = request.form.get("pages")
-        url = request.form.get("url")
         notes = request.form.get("notes")
         
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
-                    INSERT INTO articles (name, title, year, pages, url, notes)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    INSERT INTO articles (author, title, journal, year, month,
+                    volume, number, pages, notes)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
               
-            """, (nimi, title, year, pages, url, notes))
+            """, (author, title, journal, year, month,
+                volume, number, pages, notes))
         conn.commit()
         cur.close()
         conn.close()
@@ -76,20 +83,26 @@ def add_article():
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
-        nimi = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
-        year = request.form.get("year")
-        publisher = request.form.get("publisher")
+        editor = request.form["editor"]
+        publisher = request.form["publisher"]
+        year = request.form["year"]
+        month = to_int(request.form.get("month"))
+        volume = request.form.get("volume")
+        number = request.form.get("number")
         pages = request.form.get("pages")
         notes = request.form.get("notes")
         
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
-                    INSERT INTO books (name, title, year, publisher, pages, notes)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    INSERT INTO books (author, title, editor, publisher,
+                    year, month, volume, number, pages, notes)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
               
-            """, (nimi, title, year, publisher, pages, notes))
+            """, (author, title, editor, publisher, year, month,
+                volume, number, pages, notes))
         conn.commit()
         cur.close()
         conn.close()
@@ -99,21 +112,31 @@ def add_book():
 @app.route("/add_inproceedings", methods=["GET", "POST"])
 def add_inproceedings():
     if request.method == "POST":
-        nimi = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
         booktitle = request.form.get("booktitle")
-        year = request.form.get("year")
-        publisher = request.form.get("publisher")
+        year = to_int(request.form.get("year"))
+        month = to_int(request.form.get("month"))
+        editor = request.form.get("editor")
+        volume = request.form.get("volume")
+        number = request.form.get("number")
+        series = request.form.get("series")
         pages = request.form.get("pages")
+        address = request.form.get("address")
+        organization = request.form.get("organization")
+        publisher = request.form.get("publisher")
         notes = request.form.get("notes")
         
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
-                    INSERT INTO inproceedings (name, title, booktitle, year, publisher, pages, notes)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    INSERT INTO inproceedings (author, title, booktitle,
+                    year, month, editor, volume, number, series, pages,
+                    address, organization, publisher, notes)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
               
-            """, (nimi, title, booktitle, year, publisher, pages, notes))
+            """, (author, title, booktitle, year, month, editor, volume, number,
+                  series, pages, address, organization, publisher, notes))
         conn.commit()
         cur.close()
         conn.close()
@@ -123,19 +146,20 @@ def add_inproceedings():
 @app.route("/add_misc", methods=["GET", "POST"])
 def add_misc():
     if request.method == "POST":
-        nimi = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
-        year = request.form.get("year")
+        year = request.form["year"]
+        month = to_int(request.form.get("month"))
         url = request.form.get("url")
         notes = request.form.get("notes")
         
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
-                    INSERT INTO miscs (name, title, year, url, notes)
-                    VALUES (%s, %s, %s, %s, %s)
+                    INSERT INTO miscs (author, title, year, month, url, notes)
+                    VALUES (%s, %s, %s, %s, %s, %s)
               
-            """, (nimi, title, year, url, notes))
+            """, (author, title, year, month, url, notes))
         conn.commit()
         cur.close()
         conn.close()

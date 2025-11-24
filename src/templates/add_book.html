@@ -9,13 +9,16 @@
 
     <p><strong>Pakolliset kentät on merkitty tähdellä (*):</strong></p>
     <form method="POST">
-        <input type="text" name="name" placeholder="Kirjoittajan nimi" required>*<br>
+        <input type="text" name="author" placeholder="Kirjoittajan nimi" required>*<br>
         <input type="text" name="title" placeholder="Kirjan nimi" required>*<br>
-        <input type="number" name="year" placeholder="Julkaisuvuosi" required>*<br>
-
-        <input type="text" name="publisher" placeholder="Julkaisija"><br><br>
-        <input type="text" name="pages" placeholder="Sivunumerot"><br><br>
-        <textarea name="notes" placeholder="Muistiinpanot"></textarea><br><br>
+        <input type="text" name="editor" placeholder="Teksen editori" required>*<br>
+        <input type="text" name="publisher" placeholder="Julkaisija" required>*<br>
+        <input type="number" name="year" placeholder="Vuosi" required>*<br>
+        <input type="number" name="month" placeholder="Kuukausi"><br>
+        <input type="text" name="volume" placeholder="Volyymi"><br>
+        <input type="text" name="number" placeholder="Volyymin numero"><br>
+        <input type="text" name="pages" placeholder="Sivunumerot"><br>
+        <textarea name="notes" placeholder="Muistiinpanot"></textarea><br>
         
         <button type="submit">Lisää</button>
     </form>
