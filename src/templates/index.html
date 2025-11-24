@@ -13,12 +13,19 @@
         {% for art in articles %}
             <p>
                 <strong>{{ art['title'] }}</strong><br>
-                {{ art['name'] }}, {{ art['year'] }}<br>
-                {% if art['url'] %}
-                    <a href="{{ art['url'] }}">{{ art['url'] }}</a><br>
+                {{ art['author'] }}, {% if {{ art['month'] }} %}{{ art['month'] }}.{% endif %}{{ art['year'] }}<br>
+                {{ art['journal'] }}<br>
+                {% if art['volume'] %}
+                    {{ art['volume'] }}<br>
+                {% endif %}
+                {% if art['number'] %}
+                    {{ art['number'] }}<br>
+                {% endif %}
+                {% if art['pages'] %}
+                    {{ art['pages'] }}<br>
                 {% endif %}
                 {% if art['notes'] %}
-                    {{ art['notes'] }}
+                    {{ art['notes'] }}<br>
                 {% endif %}
             </p>
             <br>
@@ -27,15 +34,19 @@
         {% for book in books %}
             <p>
                 <strong>{{ book['title'] }}</strong><br>
-                {{ book['name'] }}, {{ book['year'] }}<br>
-                {% if book['publisher'] %}
-                    {{ book['publisher'] }}<br>
+                {{ book['author'] }}, {% if {{ book['month'] }} %}{{ book['month'] }}.{% endif %}{{ book['year'] }}<br>
+                {{ book['editor'] }}, {{ book['publisher'] }}<br>
+                {% if book['volume'] %}
+                    {{ book['volume'] }}<br>
+                {% endif %}
+                {% if book['number'] %}
+                    {{ book['number'] }}<br>
                 {% endif %}
                 {% if book['pages'] %}
                     {{ book['pages'] }}<br>
                 {% endif %}
                 {% if book['notes'] %}
-                    {{ book['notes'] }}
+                    {{ book['notes'] }}<br>
                 {% endif %}
             </p>
             <br>
@@ -44,15 +55,34 @@
         {% for inproc in inproceedings %}
             <p>
                 <strong>{{ inproc['title'] }}</strong><br>
-                {% if inproc['booktitle'] %}
-                    {{ inproc['booktitle'] }}<br>
+                {{ inproc['author'] }}{% if {{ inproc['year'] }} %}, {{ inproc['month'] }}.{{ inproc['year'] }}{% endif %}<br>
+                {{ inproc['booktitle'] }}<br>
+                {% if inproc['editor'] %}
+                    {{ inproc['editor'] }}<br>
                 {% endif %}
-                {{ inproc['year'] }}<br>
+                {% if inproc['publisher'] %}
+                    {{ inproc['publisher'] }}<br>
+                {% endif %}
+                {% if inproc['volume'] %}
+                    {{ inproc['volume'] }}<br>
+                {% endif %}
+                {% if inproc['number'] %}
+                    {{ inproc['number'] }}<br>
+                {% endif %}
+                {% if inproc['series'] %}
+                    {{ inproc['series'] }}<br>
+                {% endif %}
                 {% if inproc['pages'] %}
                     {{ inproc['pages'] }}<br>
                 {% endif %}
+                {% if inproc['address'] %}
+                    {{ inproc['address'] }}<br>
+                {% endif %}
+                {% if inproc['organization'] %}
+                    {{ inproc['organization'] }}<br>
+                {% endif %}
                 {% if inproc['notes'] %}
-                    {{ inproc['notes'] }}
+                    {{ inproc['notes'] }}<br>
                 {% endif %}
             </p>
             <br>
@@ -61,13 +91,12 @@
         {% for misc in miscs %}
             <p>
                 <strong>{{ misc['title'] }}</strong><br>
-                {{ misc['name'] }}<br>
-                {{ misc['year'] }}<br>
+                {{ misc['author'] }}, {% if {{ misc['month'] }} %}{{ misc['month'] }}.{% endif %}{{ misc['year'] }}<br>
                 {% if misc['url'] %}
                     <a href="{{ misc['url'] }}">{{ misc['url'] }}</a><br>
                 {% endif %}
                 {% if misc['notes'] %}
-                    {{ misc['notes'] }}
+                    {{ misc['notes'] }}<br>
                 {% endif %}
             </p>
             <br>
