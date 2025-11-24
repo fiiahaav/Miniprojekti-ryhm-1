@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 from psycopg2 import extras
 
+from util import to_int
+
 app = Flask(__name__)
 
 # Yhteys tietokantaan
@@ -57,7 +59,7 @@ def add_article():
         title = request.form["title"]
         journal = request.form["journal"]
         year = request.form["year"]
-        month = request.form.get("month")
+        month = to_int(request.form.get("month"))
         volume = request.form.get("volume")
         number = request.form.get("number")
         pages = request.form.get("pages")
@@ -81,12 +83,12 @@ def add_article():
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
-        author = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
         editor = request.form["editor"]
         publisher = request.form["publisher"]
         year = request.form["year"]
-        month = request.form.get("month")
+        month = to_int(request.form.get("month"))
         volume = request.form.get("volume")
         number = request.form.get("number")
         pages = request.form.get("pages")
@@ -110,11 +112,11 @@ def add_book():
 @app.route("/add_inproceedings", methods=["GET", "POST"])
 def add_inproceedings():
     if request.method == "POST":
-        author = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
         booktitle = request.form.get("booktitle")
-        year = request.form.get("year")
-        month = request.form.get("month")
+        year = to_int(request.form.get("year"))
+        month = to_int(request.form.get("month"))
         editor = request.form.get("editor")
         volume = request.form.get("volume")
         number = request.form.get("number")
@@ -144,10 +146,10 @@ def add_inproceedings():
 @app.route("/add_misc", methods=["GET", "POST"])
 def add_misc():
     if request.method == "POST":
-        author = request.form["name"]
+        author = request.form["author"]
         title = request.form["title"]
         year = request.form["year"]
-        month = request.form.get("month")
+        month = to_int(request.form.get("month"))
         url = request.form.get("url")
         notes = request.form.get("notes")
         

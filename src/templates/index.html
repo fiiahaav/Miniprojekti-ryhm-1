@@ -13,7 +13,7 @@
         {% for art in articles %}
             <p>
                 <strong>{{ art['title'] }}</strong><br>
-                {{ art['author'] }}, {% if {{ art['month'] }} %}{{ art['month'] }}.{% endif %}{{ art['year'] }}<br>
+                {{ art['author'] }}, {% if art['month'] %}{{ art['month'] }}.{% endif %}{{ art['year'] }}<br>
                 {{ art['journal'] }}<br>
                 {% if art['volume'] %}
                     {{ art['volume'] }}<br>
@@ -34,7 +34,7 @@
         {% for book in books %}
             <p>
                 <strong>{{ book['title'] }}</strong><br>
-                {{ book['author'] }}, {% if {{ book['month'] }} %}{{ book['month'] }}.{% endif %}{{ book['year'] }}<br>
+                {{ book['author'] }}, {% if book['month'] %}{{ book['month'] }}.{% endif %}{{ book['year'] }}<br>
                 {{ book['editor'] }}, {{ book['publisher'] }}<br>
                 {% if book['volume'] %}
                     {{ book['volume'] }}<br>
@@ -55,8 +55,10 @@
         {% for inproc in inproceedings %}
             <p>
                 <strong>{{ inproc['title'] }}</strong><br>
-                {{ inproc['author'] }}{% if {{ inproc['year'] }} %}, {{ inproc['month'] }}.{{ inproc['year'] }}{% endif %}<br>
-                {{ inproc['booktitle'] }}<br>
+                {{ inproc['author'] }}{% if inproc['year'] %}, {{ inproc['month'] }}.{{ inproc['year'] }}{% endif %}<br>
+                {% if inproc['booktitle'] %}
+                    {{ inproc['booktitle'] }}<br>
+                {% endif %}
                 {% if inproc['editor'] %}
                     {{ inproc['editor'] }}<br>
                 {% endif %}
@@ -91,7 +93,7 @@
         {% for misc in miscs %}
             <p>
                 <strong>{{ misc['title'] }}</strong><br>
-                {{ misc['author'] }}, {% if {{ misc['month'] }} %}{{ misc['month'] }}.{% endif %}{{ misc['year'] }}<br>
+                {{ misc['author'] }}, {% if misc['month'] %}{{ misc['month'] }}.{% endif %}{{ misc['year'] }}<br>
                 {% if misc['url'] %}
                     <a href="{{ misc['url'] }}">{{ misc['url'] }}</a><br>
                 {% endif %}
