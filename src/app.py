@@ -1,21 +1,21 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 from psycopg2 import extras
+from dotenv import load_dotenv
 
 from util import to_int
 
 app = Flask(__name__)
 
+load_dotenv()
+
 # Yhteys tietokantaan
 def get_db_connection():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="postgres",
-        user="postgres",
-        password="salasana",
-        cursor_factory=psycopg2.extras.DictCursor
-    )
-    return conn
+    url = os.getenv("DATABASE_URL")
+    dsn = url.replace("postgresql+psycopg2://", "postgresql://")
+    return psycopg2.connect(dsn, cursor_factory=extras.DictCursor)
 
 #Tässä toi landing page lista jossa lähteet jne
 @app.route("/")
