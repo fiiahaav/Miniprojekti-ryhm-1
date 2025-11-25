@@ -40,8 +40,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry install --no-interaction --no-root
-          pip install robotframework selenium
-          sudo apt-get update && sudo apt-get install -y chromium-browser chromium-chromedriver
+          pip install robotframework robotframework-seleniumlibrary webdriver-manager
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@master
 
       - name: Initialize database
         env:
