@@ -13,8 +13,6 @@ Stop:
 
 - Huono kommunikointi / Ei kommunikointia.
 
-- Ei kysy jos ei osaa.
-
 - Ei päivitellä product backlogia eikä sprint backlogia.
 
 Continue:
