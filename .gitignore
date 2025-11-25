@@ -3,3 +3,7 @@ __pycache__/
 .env
 .venv
 .git
+log.html
+output.xml
+report.html
+*.png
