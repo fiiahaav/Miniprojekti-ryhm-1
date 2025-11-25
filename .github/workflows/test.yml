@@ -41,6 +41,7 @@ jobs:
           pip install poetry
           poetry install --no-interaction --no-root
           pip install robotframework selenium
+          apt-get update && apt-get install -y chromium-browser chromium-chromedriver
 
       - name: Initialize database
         env:
@@ -54,6 +55,8 @@ jobs:
           sleep 3
 
       - name: Run Robot tests
+        env:
+          HEADLESS: "true"
         run: |
           set -e
           poetry run robot -d results src/story_tests
