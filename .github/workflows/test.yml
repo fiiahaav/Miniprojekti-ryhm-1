@@ -60,8 +60,6 @@ jobs:
           sleep 3
 
       - name: Run Robot tests
-        env:
-          HEADLESS: "true"
         run: |
           set -e
-          poetry run robot -d results src/story_tests
+          poetry run robot -v HEADLESS:true -d results src/story_tests
