@@ -7,6 +7,9 @@ Ohjelmistotuotanto miniprojekti
 
 
 Definition of Done:
-Toiminnallisuus toimii, niin kuin sovittu asiakkaan kanssa.
-Toiminnallisuus on testattavissa.
-Testit menevät läpi.
+
+- Toiminnallisuus toimii, niin kuin sovittu asiakkaan kanssa.
+  
+- Toiminnallisuus on testattavissa.
+  
+- Testit menevät läpi.
