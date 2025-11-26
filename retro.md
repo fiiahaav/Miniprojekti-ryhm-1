@@ -22,3 +22,28 @@ Continue:
 - Kaikki kyselee toisiltaa kysymkysiä jos jotain jää epäselväksi.
 
 - Kaikki toimii parhaalla tavalla oman aikataulun mukaan.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sprint 2 Retrospektiivi:
+“Start, Stop, Continue”
+
+Start:
+
+- Selkee työnjako
+
+- Sprint back log aktiivisempi päivitys
+
+- Aikataulu niin, että ei jää viimehetkellä liikaa tekemistä.
+
+Stop:
+
+- Stop procrastination
+
+Continue:
+
+- Hyvä vaibi
+
+- Kommunikointi
+
+- Maanantai tapaamiset
