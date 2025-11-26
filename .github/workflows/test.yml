@@ -24,6 +24,10 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+
+    env:
+      DATABASE_URL: postgresql+psycopg2://postgres:salasana@localhost:5432/postgres
+      HEADLESS: true
     
     steps:
       - name: Checkout code
