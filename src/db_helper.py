@@ -3,10 +3,12 @@ from sqlalchemy import text
 import os
 
 def reset_db():
-  print(f"Clearing contents from table todos")
-  sql = text(f"DELETE FROM todos")
-  db.session.execute(sql)
-  db.session.commit()
+  tables_in_db = tables()
+  for table in tables_in_db:
+    print(f"Clearing contents from table {table}")
+    sql = text(f"DELETE FROM {table}")
+    db.session.execute(sql)
+    db.session.commit()
 
 def tables():
   """Returns all table names from the database except those ending with _id_seq"""
