@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muokkaa inproceedings-viitettä</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Muokkaa inproceedings-viitettä</h1>
+
+    <form method="POST">
+        <input type="text" name="author" value="{{ inproc.author }}" required>*<br>
+        <input type="text" name="title" value="{{ inproc.title }}" required>*<br>
+        <input type="text" name="booktitle" value="{{ inproc.booktitle }}"><br>
+        <input type="number" name="year" value="{{ inproc.year }}"><br>
+        <input type="number" name="month" value="{{ inproc.month }}"><br>
+        <input type="text" name="editor" value="{{ inproc.editor }}"><br>
+        <input type="text" name="volume" value="{{ inproc.volume }}"><br>
+        <input type="text" name="number" value="{{ inproc.number }}"><br>
+        <input type="text" name="series" value="{{ inproc.series }}"><br>
+        <input type="text" name="pages" value="{{ inproc.pages }}"><br>
+        <input type="text" name="address" value="{{ inproc.address }}"><br>
+        <input type="text" name="organization" value="{{ inproc.organization }}"><br>
+        <input type="text" name="publisher" value="{{ inproc.publisher }}"><br>
+        <textarea name="notes">{{ inproc.notes }}</textarea><br>
+
+        <button type="submit">Tallenna muutokset</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}" class="button-link">Takaisin etusivulle</a>
+</body>
+</html>
