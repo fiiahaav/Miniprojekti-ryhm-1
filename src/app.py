@@ -80,6 +80,43 @@ def add_article():
         return redirect(url_for('index'))
     return render_template("add_article.html")
 
+
+@app.route("/edit_article/<int:id>", methods=["GET", "POST"])
+def edit_article(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    cur.execute("SELECT * FROM articles WHERE id = %s", (id,))
+    article = cur.fetchone()
+
+    if request.method == "POST":
+        author = request.form["author"]
+        title = request.form["title"]
+        journal = request.form["journal"]
+        year = request.form["year"]
+        month = to_int(request.form.get("month"))
+        volume = request.form.get("volume")
+        number = request.form.get("number")
+        pages = request.form.get("pages")
+        notes = request.form.get("notes")
+
+        cur.execute("""
+            UPDATE articles
+            SET author = %s, title = %s, journal = %s,
+                year = %s, month = %s, volume = %s,
+                number = %s, pages = %s, notes = %s
+            WHERE id = %s
+        """, (author, title, journal, year, month,
+              volume, number, pages, notes, id))
+
+        conn.commit()
+        conn.close()
+        return redirect(url_for("index"))
+    
+    conn.close()
+    return render_template("edit_article.html", article=article)
+
+
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
@@ -108,6 +145,38 @@ def add_book():
         conn.close()
         return redirect(url_for('index'))
     return render_template("add_book.html")
+
+@app.route("/edit_book/<int:id>", methods=["GET", "POST"])
+def edit_book(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM books WHERE id = %s", (id,))
+    book = cur.fetchone()
+
+    if request.method == "POST":
+        author = request.form["author"]
+        title = request.form["title"]
+        editor = request.form["editor"]
+        publisher = request.form["publisher"]
+        year = request.form["year"]
+        month = to_int(request.form.get("month"))
+        volume = request.form.get("volume")
+        number = request.form.get("number")
+        pages = request.form.get("pages")
+        notes = request.form.get("notes")
+        
+        cur.execute("""
+            UPDATE books
+            SET author=%s, title=%s, editor=%s, publisher=%s, year=%s,
+                month=%s, volume=%s, number=%s, pages=%s, notes=%s
+            WHERE id=%s
+        """, (author, title, editor, publisher, year, month, 
+            volume, number, pages, notes, id))
+
+        conn.commit()
+        return redirect(url_for("index"))
+
+    return render_template("edit_book.html", book=book)
 
 @app.route("/add_inproceedings", methods=["GET", "POST"])
 def add_inproceedings():
@@ -143,6 +212,49 @@ def add_inproceedings():
         return redirect(url_for('index'))
     return render_template("add_inproceedings.html")
 
+@app.route("/edit_inproceedings/<int:id>", methods=["GET", "POST"])
+def edit_inproceedings(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM inproceedings WHERE id = %s", (id,))
+    inproc = cur.fetchone()
+
+    if request.method == "POST":
+        author = request.form["author"]
+        title = request.form["title"]
+        booktitle = request.form.get("booktitle")
+        year = to_int(request.form.get("year"))
+        month = to_int(request.form.get("month"))
+        editor = request.form.get("editor")
+        volume = request.form.get("volume")
+        number = request.form.get("number")
+        series = request.form.get("series")
+        pages = request.form.get("pages")
+        address = request.form.get("address")
+        organization = request.form.get("organization")
+        publisher = request.form.get("publisher")
+        notes = request.form.get("notes")
+
+        cur.execute("""
+            UPDATE inproceedings
+            SET author=%s, title=%s, booktitle=%s, year=%s, month=%s,
+                editor=%s, volume=%s, number=%s, series=%s, pages=%s,
+                address=%s, organization=%s, publisher=%s, notes=%s
+            WHERE id=%s
+        """, (author, title, booktitle, year, month, editor, volume, number,
+              series, pages, address, organization, publisher, notes, id))
+
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        return redirect(url_for("index"))
+
+    cur.close()
+    conn.close()
+    return render_template("edit_inproceedings.html", inproc=inproc)
+
 @app.route("/add_misc", methods=["GET", "POST"])
 def add_misc():
     if request.method == "POST":
@@ -166,7 +278,36 @@ def add_misc():
         return redirect(url_for('index'))
     return render_template("add_misc.html")
 
+@app.route("/edit_misc/<int:id>", methods=["GET", "POST"])
+def edit_misc(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM miscs WHERE id = %s", (id,))
+    misc = cur.fetchone()
+
+    if request.method == "POST":
+        author = request.form["author"]
+        title = request.form["title"]
+        year = request.form["year"]
+        month = to_int(request.form.get("month"))
+        url = request.form.get("url")
+        notes = request.form.get("notes")
+
+        cur.execute("""
+            UPDATE miscs
+            SET author=%s, title=%s, year=%s, month=%s, url=%s, notes=%s
+            WHERE id=%s
+        """, (author, title, year, month, url, notes, id))
+
+        conn.commit()
+        cur.close()
+        conn.close()
+        return redirect(url_for("index"))
+
+    cur.close()
+    conn.close()
+    return render_template("edit_misc.html", misc=misc)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
-    
