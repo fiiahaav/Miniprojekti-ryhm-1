@@ -309,5 +309,49 @@ def edit_misc(id):
     return render_template("edit_misc.html", misc=misc)
 
 
+@app.route("/delete_article/<int:id>", methods=["POST"])
+def delete_article(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM articles WHERE id = %s", (id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect(url_for("index"))
+
+
+@app.route("/delete_book/<int:id>", methods=["POST"])
+def delete_book(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM books WHERE id = %s", (id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect(url_for("index"))
+
+
+@app.route("/delete_inproceedings/<int:id>", methods=["POST"])
+def delete_inproceedings(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM inproceedings WHERE id = %s", (id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect(url_for("index"))
+
+
+@app.route("/delete_misc/<int:id>", methods=["POST"])
+def delete_misc(id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM miscs WHERE id = %s", (id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect(url_for("index"))
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
