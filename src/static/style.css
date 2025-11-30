@@ -1,6 +1,7 @@
+/* --- Global Styles --- */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f8f8ff;
     color: #333;
     margin: 20px;
     padding: 0;
@@ -13,17 +14,13 @@ h1, h2 {
     font-weight: 700;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-/* Tyyli yksittäiselle lähde-elementille (index.html) */
-ul p {
+/* --- Source Entry Styling Fix --- */
+/* Styles the individual source entry <p> element inside each column */
+.column p {
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
@@ -35,7 +32,8 @@ strong {
     color: #333;
 }
 
-/* Lomakkeiden peruskehys */
+/* --- Form Layout and Appearance --- */
+/* Basic styling for the form container */
 form {
     background-color: #fff;
     padding: 20px;
@@ -43,11 +41,13 @@ form {
     border-radius: 5px;
     max-width: 500px;
     margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px; 
+    margin-right: auto;
 }
 
-/* Lomakekentät */
+/* Styles form input fields and select box */
 input[type="text"], input[type="number"], input[type="url"], textarea, select {
-
     width: 95%; 
     padding: 10px;
     margin-bottom: 10px;
@@ -61,7 +61,7 @@ textarea {
     height: 100px;
 }
 
-/* Tyyli "Lisää" painikkeelle (Sininen) */
+/* Styles the submit button */
 button[type="submit"] {
     background-color: #007bff;
     color: white;
@@ -77,7 +77,7 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Tyyli pakolliset kentät (*) -ohjetekstille */
+/* Styles text for required fields */
 p strong {
     color: #d9534f;
     font-weight: bold;
@@ -85,10 +85,10 @@ p strong {
     display: inline;
 }
 
-/* Tyyli "Takaisin" -linkille (Punainen painike) */
+/* Styles the red button link (e.g., "Takaisin") */
 .button-link {
     display: inline-block;
-    background-color: #dc3545; /* Punainen tausta */
+    background-color: #dc3545;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -102,5 +102,61 @@ p strong {
 }
 
 .button-link:hover {
-    background-color: #c82333; /* Tummempi punainen hover-tilaan */
+    background-color: #c82333;
+}
+
+/* --- Flexbox Layout (4 Columns Side-by-Side) --- */
+/* Container that aligns the four columns horizontally */
+.flex-container {
+    display: flex;           
+    justify-content: space-between; 
+    gap: 15px;               
+    align-items: flex-start; 
+}
+
+/* Styles each individual column */
+.column {
+    flex: 1;
+    padding: 10px;
+    /* Adding a light border and minimum padding for separation */
+    border: 1px solid #848383; 
+    border-radius: 5px;
+}
+
+/* --- Specific Color Boxes --- */
+.art-col {
+    background-color: #dddfff; 
+}
+
+.book-col {
+    background-color: #dddfff;
+}
+
+/* Inproceedings - Very Light Green */
+.inproc-col {
+    background-color: #dddfff;
+}
+
+.misc-col {
+    background-color: #dddfff;
+}
+
+/* --- Link Styling --- */
+.edit-link {
+    /* Mimics a small, subtle button */
+    display: inline-block;
+    background-color: #f0f0f0; 
+    color: #333;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.edit-link:hover {
+    background-color: #e0e0e0;
+    color: #000;
+    border-color: #aaa;
 }
