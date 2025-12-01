@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hae viitteitä viitetyypillä</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hae viitteitä</h1>
+
+    <form method="GET" action="{{ url_for('get_references_page') }}">
+        <label for ="type">Valitse viitteen tyyppi:</label>
+        <select name="type" id="type">
+            <option value="articles">Artikkelit</option>
+            <option value="books">Kirjat</option>
+            <option value="inproceedings">Inproceedings</option>
+            <option value="miscs">Misc</option>
+        </select>
+        <button type="submit">Hae</button>
+    </form>
+
+    {% if viitteet %}
+        <h2>Viitteet:</h2>
+        <ul>
+        {% for v in viitteet %}
+            <li>
+                <strong>{{ v['title'] }}</strong> – {{ v['author'] }}
+                {% if v.get('year') %}({{ v['year'] }}){% endif %}<br>
+                {% if v.get('journal') %}{{ v['journal'] }}<br>{% endif %}
+                {% if v.get('publisher') %}{{ v['publisher'] }}<br>{% endif %}
+                {% if v.get('booktitle') %}{{ v['booktitle'] }}<br>{% endif %}
+                {% if v.get('url') %}<a href="{{ v['url'] }}">{{ v['url'] }}</a><br>{% endif %}
+                {% if v.get('notes') %}{{ v['notes'] }}<br>{% endif %}
+        {% endfor %}
+        </ul>
+     {% elif request.args.get('type') %}
+        <p>Ei löytynyt viitteitä.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('index') }}" class="button-link">Takaisin etusivulle</a>
+</body>
+</html>

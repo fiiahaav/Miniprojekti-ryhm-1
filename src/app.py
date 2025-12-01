@@ -308,6 +308,42 @@ def edit_misc(id):
     conn.close()
     return render_template("edit_misc.html", misc=misc)
 
+#täällä voi hakea lähteitä tietyllä viitetyypillä
+@app.route("/get_references")
+def get_references_page():
+    ref_type = request.args.get("type")
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    if ref_type:
+        cur.execute("SELECT * FROM articles ORDER BY id DESC")
+        viitteet = cur.fetchall()
+    elif ref_type:
+        cur.execute("SELECT * FROM books ORDER BY id DESC")
+        viitteet = cur.fetchall()
+    elif ref_type:
+        cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
+        viitteet = cur.fetchall()
+    elif ref_type:
+        cur.execute("SELECT * FROM miscs ORDER BY id DESC")
+        viitteet = cur.fetchall()
+    else:
+        viitteet = []
+    
+    cur.close()
+    conn.close()
+
+    return render_template("get_references.html", viitteet=viitteet)
+
+def get_references(ref_type):
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    if ref_type == "article":
+        cur.execute("SELECT * FROM articles")
+        results = cur.fetchall()
+    cur.execute("SELECT * FROM articles")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
