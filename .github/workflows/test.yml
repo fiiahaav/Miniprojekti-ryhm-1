@@ -49,7 +49,7 @@ jobs:
 
       - name: Run Pylint
         run: |
-          pylint src/
+          poetry run pylint src
 
       - name: Run unit tests (unittest)
         run: |

@@ -34,7 +34,7 @@ def index():
     cur.close()
     conn.close()
 
-    return render_template("index.html", articles=articles, books=books, 
+    return render_template("index.html", articles=articles, books=books,
                            inproceedings=inproceedings, miscs=miscs)
 
 
@@ -64,7 +64,7 @@ def add_article():
         number = request.form.get("number")
         pages = request.form.get("pages")
         notes = request.form.get("notes")
-        
+
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
@@ -85,7 +85,7 @@ def add_article():
 def edit_article(id):
     conn = get_db_connection()
     cur = conn.cursor()
-    
+
     cur.execute("SELECT * FROM articles WHERE id = %s", (id,))
     article = cur.fetchone()
 
@@ -112,7 +112,7 @@ def edit_article(id):
         conn.commit()
         conn.close()
         return redirect(url_for("index"))
-    
+
     conn.close()
     return render_template("edit_article.html", article=article)
 
@@ -130,7 +130,7 @@ def add_book():
         number = request.form.get("number")
         pages = request.form.get("pages")
         notes = request.form.get("notes")
-        
+
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
@@ -164,13 +164,13 @@ def edit_book(id):
         number = request.form.get("number")
         pages = request.form.get("pages")
         notes = request.form.get("notes")
-        
+
         cur.execute("""
             UPDATE books
             SET author=%s, title=%s, editor=%s, publisher=%s, year=%s,
                 month=%s, volume=%s, number=%s, pages=%s, notes=%s
             WHERE id=%s
-        """, (author, title, editor, publisher, year, month, 
+        """, (author, title, editor, publisher, year, month,
             volume, number, pages, notes, id))
 
         conn.commit()
@@ -195,7 +195,7 @@ def add_inproceedings():
         organization = request.form.get("organization")
         publisher = request.form.get("publisher")
         notes = request.form.get("notes")
-        
+
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
@@ -264,7 +264,7 @@ def add_misc():
         month = to_int(request.form.get("month"))
         url = request.form.get("url")
         notes = request.form.get("notes")
-        
+
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("""
@@ -311,12 +311,12 @@ def edit_misc(id):
 #täällä voi hakea lähteitä tietyllä viitetyypillä
 @app.route("/get_references")
 def get_references_page():
-    ref_type = request.args.get("type")  
-    query = request.args.get("query")    
-    year = request.args.get("year")      
+    ref_type = request.args.get("type")
+    query = request.args.get("query")
+    year = request.args.get("year")
 
     references = []
-   
+
     if ref_type or query or year:
         conn = get_db_connection()
         cur = conn.cursor()
@@ -345,7 +345,7 @@ def get_references_page():
 
         cur.close()
         conn.close()
-        
+
     if year:
         references = [r for r in references if r.get("year") is not None and str (r["year"]) == year]
 
