@@ -10,33 +10,44 @@
     <form method="GET" action="{{ url_for('get_references_page') }}">
         <label for ="type">Valitse viitteen tyyppi:</label>
         <select name="type" id="type">
-            <option value="articles">Artikkelit</option>
-            <option value="books">Kirjat</option>
-            <option value="inproceedings">Inproceedings</option>
-            <option value="miscs">Misc</option>
+            <option value="">-- Valitse viitetyyppi --</option>
+            <option value="articles" {% if ref_type == 'articles' %}selected{% endif %}>Artikkelit</option>
+            <option value="books" {% if ref_type == 'books' %}selected{% endif %}>Kirjat</option>
+            <option value="inproceedings" {% if ref_type == 'inproceedings' %}selected{% endif %}>Inproceedings</option>
+            <option value="miscs" {% if ref_type == 'miscs' %}selected{% endif %}>Misc</option>
         </select>
+        <br><br>
+        <label for="query">Hakusana:</label>
+        <input type="text" name="query" id="query" value="{{ query or '' }}">
+        <br><br>
+        <label for="year">Vuosi:</label>
+        <input type="number" name="year" id="year" value="{{ year or '' }}">
+        <br><br>
         <button type="submit">Hae</button>
     </form>
+     
+    {% if ref_type %}
+        <h2>Näytetään viitteet: {{ ref_type }} </h2>
+    {% endif %}
 
-    {% if viitteet %}
-        <h2>Viitteet:</h2>
+    {% if references %}
         <ul>
-            {% for v in viitteet %}
-    <li>
-        <h3>{{ v.title }}</h3>
-        <ul>
-            {% if v.author %}<li>{{ v.author }}</li>{% endif %}
-            {% if v.year %}<li>{{ v.year }}</li>{% endif %}
-            {% if v.journal %}<li>{{ v.journal }}</li>{% endif %}
-            {% if v.publisher %}<li>{{ v.publisher }}</li>{% endif %}
-            {% if v.booktitle %}<li>{{ v.booktitle }}</li>{% endif %}
-            {% if v.url %}<li><a href="{{ v.url }}">{{ v.url }}</a></li>{% endif %}
-            {% if v.notes %}<li>{{ v.notes }}</li>{% endif %}
+        {% for v in references %}
+            <li>
+                <h2>{{ v.title }}</h2>
+                <ul>
+                    {% if v.author %}<li>{{ v.author }}</li>{% endif %}
+                    {% if v.year %}<li>{{ v.year }}</li>{% endif %}
+                    {% if v.journal %}<li>{{ v.journal }}</li>{% endif %}
+                    {% if v.publisher %}<li>{{ v.publisher }}</li>{% endif %}
+                    {% if v.booktitle %}<li>{{ v.booktitle }}</li>{% endif %}
+                    {% if v.url %}<li><a href="{{ v.url }}">{{ v.url }}</a></li>{% endif %}
+                    {% if v.notes %}<li>{{ v.notes }}</li>{% endif %}
+                </ul>
+            </li>
+        {% endfor %}
         </ul>
-    </li>
-{% endfor %}
-        </ul>
-    {% elif request.args.get('type') %}
+   {% else %}
         <p>Ei löytynyt viitteitä.</p>
     {% endif %}
 

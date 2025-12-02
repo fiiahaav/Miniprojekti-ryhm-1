@@ -311,39 +311,58 @@ def edit_misc(id):
 #täällä voi hakea lähteitä tietyllä viitetyypillä
 @app.route("/get_references")
 def get_references_page():
-    ref_type = request.args.get("type")
+    ref_type = request.args.get("type")  
+    query = request.args.get("query")    
+    year = request.args.get("year")      
 
-    conn = get_db_connection()
-    cur = conn.cursor()
+    references = []
+   
+    if ref_type or query or year:
+        conn = get_db_connection()
+        cur = conn.cursor()
 
-    if ref_type == "articles":
-        cur.execute("SELECT * FROM articles ORDER BY id DESC")
-        viitteet = cur.fetchall()
-    elif ref_type == "books":
-        cur.execute("SELECT * FROM books ORDER BY id DESC")
-        viitteet = cur.fetchall()
-    elif ref_type == "inproceedings":
-        cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
-        viitteet = cur.fetchall()
-    elif ref_type == "miscs":
-        cur.execute("SELECT * FROM miscs ORDER BY id DESC")
-        viitteet = cur.fetchall()
-    else:
-        viitteet = []
-    
-    cur.close()
-    conn.close()
+        if ref_type == "articles":
+            cur.execute("SELECT * FROM articles ORDER BY id DESC")
+            references = cur.fetchall()
+        elif ref_type == "books":
+            cur.execute("SELECT * FROM books ORDER BY id DESC")
+            references = cur.fetchall()
+        elif ref_type == "inproceedings":
+            cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
+            references = cur.fetchall()
+        elif ref_type == "miscs":
+            cur.execute("SELECT * FROM miscs ORDER BY id DESC")
+            references = cur.fetchall()
+        else:
+            cur.execute("SELECT * FROM articles ORDER BY id DESC")
+            references.extend(cur.fetchall())
+            cur.execute("SELECT * FROM books ORDER BY id DESC")
+            references.extend(cur.fetchall())
+            cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
+            references.extend(cur.fetchall())
+            cur.execute("SELECT * FROM miscs ORDER BY id DESC")
+            references.extend(cur.fetchall())
 
-    return render_template("get_references.html", viitteet=viitteet)
+        cur.close()
+        conn.close()
+        
+    if year:
+        references = [r for r in references if r.get("year") is not None and str (r["year"]) == year]
 
-def get_references(ref_type):
-    conn = get_db_connection()
-    cur = conn.cursor()
+    if query:
+        references = [
+            r for r in references
+            if any(query.lower() in str(r.get(field, "")).lower()
+                   for field in ["title", "author", "journal", "publisher", "booktitle", "notes"])
+        ]
 
-    if ref_type == "article":
-        cur.execute("SELECT * FROM articles")
-        results = cur.fetchall()
-    cur.execute("SELECT * FROM articles")
+    return render_template(
+        "get_references.html",
+        references=references,
+        ref_type=ref_type,
+        query=query,
+        year=year
+    )
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
