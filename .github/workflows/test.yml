@@ -45,6 +45,11 @@ jobs:
           pip install poetry
           poetry install --no-interaction --no-root
           pip install robotframework robotframework-seleniumlibrary webdriver-manager
+          pip install pylint
+
+      - name: Run Pylint
+        run: |
+          pylint src/
 
       - name: Run unit tests (unittest)
         run: |
