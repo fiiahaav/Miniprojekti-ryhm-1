@@ -347,7 +347,7 @@ def get_references_page():
         conn.close()
 
     if year:
-        references = [r for r in references if r.get("year") is not None and str (r["year"]) == year]
+        references = [r for r in references if r.get("year") is not None and str (r["year"]) == year] # pylint: disable=line-too-long
 
     if query:
         references = [

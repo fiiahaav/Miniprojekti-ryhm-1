@@ -1,6 +1,6 @@
-from config import db, app
-from sqlalchemy import text
 import os
+from sqlalchemy import text
+from config import db, app
 
 def reset_db():
     tables_in_db = tables()
@@ -36,7 +36,7 @@ def setup_db():
     print("Creating database")
 
     # Read schema from schema.sql file
-    schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql')
+    schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql') # pylint: disable=unspecified-encoding
     with open(schema_path, 'r') as f:
         schema_sql = f.read().strip()
 
