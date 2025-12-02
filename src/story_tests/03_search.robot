@@ -7,7 +7,7 @@ Suite Teardown  Close Browser
 ${SEARCH_URL}    ${HOME_URL}/get_references
 
 *** Test Cases ***
-Search By Title
+User Can Search By Title
     Go To    ${SEARCH_URL}
     Wait Until Element Is Visible    id=type    timeout=5s
     Select From List By Value       id=type    articles
@@ -17,7 +17,7 @@ Search By Title
     Click Button    xpath=//button[text()='Hae']
     Wait Until Page Contains    Test Article    timeout=5s
 
-Search By Year
+User Can Search By Year
     Go To    ${SEARCH_URL}
     Wait Until Element Is Visible    id=year    timeout=5s
     Input Text    id=year    2024
@@ -26,7 +26,7 @@ Search By Year
     Wait Until Page Contains    Test Article    timeout=5s
     Wait Until Page Contains    Test Book    timeout=5s
 
-Search By Type Returns No Results
+User Can Search By Type Returns No Results
     Go To    ${SEARCH_URL}
     Wait Until Element Is Visible    id=type    timeout=5s
     Select From List By Value    id=type    inproceedings
@@ -36,7 +36,7 @@ Search By Type Returns No Results
     Click Button    xpath=//button[text()='Hae']
     Wait Until Page Contains    Ei löytynyt viitteitä.    timeout=5s
 
-Search By Query And Year
+User Can Search By Query And Year
     Go To    ${SEARCH_URL}
     Wait Until Element Is Visible    id=type    timeout=5s
     Select From List By Value    id=type    books
