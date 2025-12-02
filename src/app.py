@@ -316,16 +316,16 @@ def get_references_page():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    if ref_type:
+    if ref_type == "articles":
         cur.execute("SELECT * FROM articles ORDER BY id DESC")
         viitteet = cur.fetchall()
-    elif ref_type:
+    elif ref_type == "books":
         cur.execute("SELECT * FROM books ORDER BY id DESC")
         viitteet = cur.fetchall()
-    elif ref_type:
+    elif ref_type == "inproceedings":
         cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
         viitteet = cur.fetchall()
-    elif ref_type:
+    elif ref_type == "miscs":
         cur.execute("SELECT * FROM miscs ORDER BY id DESC")
         viitteet = cur.fetchall()
     else:

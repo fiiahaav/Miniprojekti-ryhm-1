@@ -21,18 +21,22 @@
     {% if viitteet %}
         <h2>Viitteet:</h2>
         <ul>
-        {% for v in viitteet %}
-            <li>
-                <strong>{{ v['title'] }}</strong> – {{ v['author'] }}
-                {% if v.get('year') %}({{ v['year'] }}){% endif %}<br>
-                {% if v.get('journal') %}{{ v['journal'] }}<br>{% endif %}
-                {% if v.get('publisher') %}{{ v['publisher'] }}<br>{% endif %}
-                {% if v.get('booktitle') %}{{ v['booktitle'] }}<br>{% endif %}
-                {% if v.get('url') %}<a href="{{ v['url'] }}">{{ v['url'] }}</a><br>{% endif %}
-                {% if v.get('notes') %}{{ v['notes'] }}<br>{% endif %}
-        {% endfor %}
+            {% for v in viitteet %}
+    <li>
+        <h3>{{ v.title }}</h3>
+        <ul>
+            {% if v.author %}<li>{{ v.author }}</li>{% endif %}
+            {% if v.year %}<li>{{ v.year }}</li>{% endif %}
+            {% if v.journal %}<li>{{ v.journal }}</li>{% endif %}
+            {% if v.publisher %}<li>{{ v.publisher }}</li>{% endif %}
+            {% if v.booktitle %}<li>{{ v.booktitle }}</li>{% endif %}
+            {% if v.url %}<li><a href="{{ v.url }}">{{ v.url }}</a></li>{% endif %}
+            {% if v.notes %}<li>{{ v.notes }}</li>{% endif %}
         </ul>
-     {% elif request.args.get('type') %}
+    </li>
+{% endfor %}
+        </ul>
+    {% elif request.args.get('type') %}
         <p>Ei löytynyt viitteitä.</p>
     {% endif %}
 
