@@ -15,12 +15,12 @@ h1, h2 {
 }
 
 /* --- Source Entry Styling Fix --- */
-/* Styles the individual source entry <p> element inside each column */
-.column p {
+/* Styles the individual source entry element inside each column */
+.source-entry {
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 15px;
-    margin-bottom: 1px;
+    margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
@@ -159,4 +159,34 @@ p strong {
     background-color: #e0e0e0;
     color: #000;
     border-color: #aaa;
+}
+
+/* --- Delete Button Styling --- */
+.delete-form {
+    display: inline;
+    background: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.delete-btn {
+    display: inline-block;
+    background-color: #f8d7da !important;
+    color: #721c24 !important;
+    padding: 5px 10px;
+    border: 1px solid #f5c6cb !important;
+    border-radius: 3px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.delete-btn:hover {
+    background-color: #f1b0b7 !important;
+    color: #491217 !important;
+    border-color: #e89ca4 !important;
 }

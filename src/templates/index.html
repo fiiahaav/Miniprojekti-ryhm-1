@@ -23,7 +23,7 @@
         <div class="column art-col">
             <h3>Artikkelit:</h3>
             {% for art in articles %}
-                <p>
+                <div class="source-entry">
                     <strong>{{ art['title'] }}</strong><br>
                     {{ art['author'] }}, {% if art['month'] %}{{ art['month'] }}.{% endif %}{{ art['year'] }}<br>
                     {{ art['journal'] }}<br>
@@ -41,15 +41,17 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_article', id=art.id) }}" class="edit-link">Muokkaa</a>
-                </p>
-                <br>
+                    <form action="{{ url_for('delete_article', id=art.id) }}" method="POST" class="delete-form">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän artikkelin?')">Poista</button>
+                    </form>
+                </div>
             {% endfor %}
         </div>
 
         <div class="column book-col">
             <h3>Kirjat:</h3>
             {% for book in books %}
-                <p>
+                <div class="source-entry">
                     <strong>{{ book['title'] }}</strong><br>
                     {{ book['author'] }}, {% if book['month'] %}{{ book['month'] }}.{% endif %}{{ book['year'] }}<br>
                     {{ book['editor'] }}, {{ book['publisher'] }}<br>
@@ -67,15 +69,17 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_book', id=book.id) }}" class="edit-link">Muokkaa</a>
-                </p>
-                <br>
+                    <form action="{{ url_for('delete_book', id=book.id) }}" method="POST" class="delete-form">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän kirjan?')">Poista</button>
+                    </form>
+                </div>
             {% endfor %}
         </div>
 
         <div class="column inproc-col">
             <h3>Inproceedings:</h3>
             {% for inproc in inproceedings %}
-                <p>
+                <div class="source-entry">
                     <strong>{{ inproc['title'] }}</strong><br>
                     {{ inproc['author'] }}{% if inproc['year'] %}, {{ inproc['month'] }}.{{ inproc['year'] }}{% endif %}<br>
                     {% if inproc['booktitle'] %}
@@ -110,15 +114,17 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_inproceedings', id=inproc.id) }}" class="edit-link">Muokkaa</a>
-                </p>
-                <br>
+                    <form action="{{ url_for('delete_inproceedings', id=inproc.id) }}" method="POST" class="delete-form">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän inproceedings-lähteen?')">Poista</button>
+                    </form>
+                </div>
             {% endfor %}
         </div>
 
         <div class="column misc-col">
             <h3>Misc:</h3>
             {% for misc in miscs %}
-                <p>
+                <div class="source-entry">
                     <strong>{{ misc['title'] }}</strong><br>
                     {{ misc['author'] }}, {% if misc['month'] %}{{ misc['month'] }}.{% endif %}{{ misc['year'] }}<br>
                     {% if misc['url'] %}
@@ -129,8 +135,10 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_misc', id=misc.id) }}" class="edit-link">Muokkaa</a>
-                </p>
-                <br>
+                    <form action="{{ url_for('delete_misc', id=misc.id) }}" method="POST" class="delete-form">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän misc-lähteen?')">Poista</button>
+                    </form>
+                </div>
             {% endfor %}
         </div>
 
