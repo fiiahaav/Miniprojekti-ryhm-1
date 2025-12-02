@@ -308,6 +308,61 @@ def edit_misc(id):
     conn.close()
     return render_template("edit_misc.html", misc=misc)
 
+#täällä voi hakea lähteitä tietyllä viitetyypillä
+@app.route("/get_references")
+def get_references_page():
+    ref_type = request.args.get("type")  
+    query = request.args.get("query")    
+    year = request.args.get("year")      
+
+    references = []
+   
+    if ref_type or query or year:
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        if ref_type == "articles":
+            cur.execute("SELECT * FROM articles ORDER BY id DESC")
+            references = cur.fetchall()
+        elif ref_type == "books":
+            cur.execute("SELECT * FROM books ORDER BY id DESC")
+            references = cur.fetchall()
+        elif ref_type == "inproceedings":
+            cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
+            references = cur.fetchall()
+        elif ref_type == "miscs":
+            cur.execute("SELECT * FROM miscs ORDER BY id DESC")
+            references = cur.fetchall()
+        else:
+            cur.execute("SELECT * FROM articles ORDER BY id DESC")
+            references.extend(cur.fetchall())
+            cur.execute("SELECT * FROM books ORDER BY id DESC")
+            references.extend(cur.fetchall())
+            cur.execute("SELECT * FROM inproceedings ORDER BY id DESC")
+            references.extend(cur.fetchall())
+            cur.execute("SELECT * FROM miscs ORDER BY id DESC")
+            references.extend(cur.fetchall())
+
+        cur.close()
+        conn.close()
+        
+    if year:
+        references = [r for r in references if r.get("year") is not None and str (r["year"]) == year]
+
+    if query:
+        references = [
+            r for r in references
+            if any(query.lower() in str(r.get(field, "")).lower()
+                   for field in ["title", "author", "journal", "publisher", "booktitle", "notes"])
+        ]
+
+    return render_template(
+        "get_references.html",
+        references=references,
+        ref_type=ref_type,
+        query=query,
+        year=year
+    )
 
 @app.route("/delete_article/<int:id>", methods=["POST"])
 def delete_article(id):
