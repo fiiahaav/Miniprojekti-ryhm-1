@@ -45,6 +45,15 @@ jobs:
           pip install poetry
           poetry install --no-interaction --no-root
           pip install robotframework robotframework-seleniumlibrary webdriver-manager
+          pip install pylint
+
+      - name: Run Pylint
+        run: |
+          poetry run pylint -E src
+
+      - name: Run unit tests (unittest)
+        run: |
+          poetry run python -m unittest discover -s src/tests -t src -p "test_*.py" -v
 
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
