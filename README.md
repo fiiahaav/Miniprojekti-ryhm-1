@@ -5,6 +5,8 @@ Ohjelmistotuotanto miniprojekti - Viitteidenhallintasovellus
 
 [Sprint-backlog](https://docs.google.com/spreadsheets/d/1dKQkSXH3QKJ_fpU7lTmOB-eHB5XSrer6C5ilD1vwazk/edit?gid=8#gid=8)
 
+[Testikattavuusraportti](http://htmlpreview.github.io/?https://github.com/fiiahaav/Miniprojekti-ryhm-1/blob/testit/index.html)
+
 ## Asennus ja käyttöönotto
 
 ### 1. Vaatimukset
