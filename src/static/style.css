@@ -39,8 +39,6 @@ h1, h2 {
     width: 100%;
 }
 
-/* --- Content Alignment for Specific Top Boxes --- */
-
 /* Centers content for the Search button and Text box */
 .get-refs-form, 
 .centered-text-box {
@@ -58,16 +56,14 @@ h1, h2 {
 }
 
 .get-refs-form button {
-    width: auto; /* Prevents button from stretching to full width */
+    width: auto;
     margin: 0;
 }
 
 /* --- Form Reset --- */
-/* Resets generic form styles so they don't fight with .top-column styles */
 form {
     margin: 0;
     max-width: none;
-    /* We removed background/border/padding here because .top-column handles it now */
 }
 
 /* --- Inputs & Buttons --- */
