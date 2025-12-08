@@ -11,17 +11,35 @@
 
     <form method="POST">
 
-        <input type="text" name="author" value="{{ misc.author }}" required>*<br>
+    <div class="field">
+        <span class="placeholder">Kirjoittajan nimi *</span>
+        <input type="text" name="author" value="{{ misc.author }}" required>
+    </div>
 
-        <input type="text" name="title" value="{{ misc.title }}" required>*<br>
+    <div class="field">
+        <span class="placeholder">Teoksen nimi *</span>
+        <input type="text" name="title" value="{{ misc.title }}" required>
+    </div>
 
-        <input type="number" name="year" value="{{ misc.year }}" required>*<br>
+    <div class="field">
+        <span class="placeholder">Vuosi *</span>
+        <input type="number" name="year" value="{{ misc.year }}" required>
+    </div>
 
-        <input type="number" name="month" value="{{ misc.month }}"><br>
+    <div class="field">
+        <span class="placeholder">Kuukausi</span>
+        <input type="number" name="month" value="{{ misc.month }}">
+    </div>
 
-        <input type="url" name="url" value="{{ misc.url }}"><br>
+    <div class="field">
+        <span class="placeholder">URL-osoite</span>
+        <input type="url" name="url" value="{{ misc.url }}">
+    </div>
 
-        <textarea name="notes">{{ misc.notes }}</textarea><br>
+    <div class="field textarea-field">
+        <span class="placeholder">Muistiinpanot</span>
+        <textarea name="notes">{{ misc.notes }}</textarea>
+    </div>
 
         <button type="submit">Tallenna muutokset</button>
     </form>

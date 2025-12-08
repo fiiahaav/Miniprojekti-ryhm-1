@@ -10,17 +10,52 @@
 
     <p><strong>Pakolliset kentät on merkitty tähdellä (*):</strong></p>
     <form method="POST">
+    
+    <div class="field">
+            <span class="placeholder">Kirjoittajan nimi *</span>
+            <input type="text" name="author" value="{{ article.author }}" required>
+        </div>
 
-    <input type="text" name="author" value="{{ article.author }}" required>*<br>
-    <input type="text" name="title" value="{{ article.title }}" required>*<br>
-    <input type="text" name="journal" value="{{ article.journal }}" required>*<br>
-    <input type="number" name="year" value="{{ article.year }}" required>*<br>
-    <input type="number" name="month" value="{{ article.month }}"><br>
-    <input type="text" name="volume" value="{{ article.volume }}"><br>
-    <input type="text" name="number" value="{{ article.number }}"><br>
-    <input type="text" name="pages" value="{{ article.pages }}"><br>
-    <textarea name="notes">{{ article.notes }}</textarea><br>
+        <div class="field">
+            <span class="placeholder">Artikkelin nimi *</span>
+            <input type="text" name="title" value="{{ article.title }}" required>
+        </div>
 
+        <div class="field">
+            <span class="placeholder">Teoksen nimi *</span>
+            <input type="text" name="journal" value="{{ article.journal }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Vuosi *</span>
+            <input type="number" name="year" value="{{ article.year }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Kuukausi</span>
+            <input type="number" name="month" value="{{ article.month }}">
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Volyymi</span>
+            <input type="text" name="volume" value="{{ article.volume }}">
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Volyymin numero</span>
+            <input type="text" name="number" value="{{ article.number }}">
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Sivunumerot</span>
+            <input type="text" name="pages" value="{{ article.pages }}">
+        </div>
+
+        <div class="field textarea-field">
+            <span class="placeholder">Muistiinpanot</span>
+            <textarea name="notes">{{ article.notes }}</textarea>
+        </div>
+    
     <button type="submit">Tallenna muutokset</button>
 </form>
 

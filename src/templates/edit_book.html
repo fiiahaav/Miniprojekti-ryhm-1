@@ -8,16 +8,55 @@
     <h1>Muokkaa kirjaa</h1>
 
     <form method="POST">
-        <input type="text" name="author" value="{{ book.author }}" required>*<br>
-        <input type="text" name="title" value="{{ book.title }}" required>*<br>
-        <input type="text" name="editor" value="{{ book.editor }}" required>*<br>
-        <input type="text" name="publisher" value="{{ book.publisher }}" required>*<br>
-        <input type="number" name="year" value="{{ book.year }}" required>*<br>
-        <input type="number" name="month" value="{{ book.month }}"><br>
-        <input type="text" name="volume" value="{{ book.volume }}"><br>
-        <input type="text" name="number" value="{{ book.number }}"><br>
-        <input type="text" name="pages" value="{{ book.pages }}"><br>
-        <textarea name="notes">{{ book.notes }}</textarea><br>
+        <div class="field">
+            <span class="placeholder">Kirjoittajan nimi *</span>
+            <input type="text" name="author" value="{{ book.author }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Kirjan nimi *</span>
+            <input type="text" name="title" value="{{ book.title }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Teoksen editori *</span>
+            <input type="text" name="editor" value="{{ book.editor }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Julkaisija *</span>
+            <input type="text" name="publisher" value="{{ book.publisher }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Vuosi *</span>
+            <input type="number" name="year" value="{{ book.year }}" required>
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Kuukausi</span>
+            <input type="number" name="month" value="{{ book.month }}">
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Volyymi</span>
+            <input type="text" name="volume" value="{{ book.volume }}">
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Volyymin numero</span>
+            <input type="text" name="number" value="{{ book.number }}">
+        </div>
+
+        <div class="field">
+            <span class="placeholder">Sivunumerot</span>
+            <input type="text" name="pages" value="{{ book.pages }}">
+        </div>
+
+        <div class="field textarea-field">
+            <span class="placeholder">Muistiinpanot</span>
+            <textarea name="notes">{{ book.notes }}</textarea>
+        </div>
 
         <button type="submit">Tallenna muutokset</button>
     </form>
