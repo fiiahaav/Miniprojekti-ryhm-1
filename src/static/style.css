@@ -210,3 +210,10 @@ p strong {
     background-color: #0056b3;
     border-color: #003d82;
 }
+
+.placeholder {
+    font-size: 0.85em;     
+    color: #666;
+    opacity: 0.7;
+    font-weight: 400;
+}
