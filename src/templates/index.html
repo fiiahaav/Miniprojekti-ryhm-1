@@ -41,6 +41,7 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_article', id=art.id) }}" class="edit-link">Muokkaa</a>
+                    <a href="{{ url_for('download_bibtex_article', id=art.id) }}" class="download-link">Lataa BibTeX</a>
                     <form action="{{ url_for('delete_article', id=art.id) }}" method="POST" class="delete-form">
                         <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän artikkelin?')">Poista</button>
                     </form>
@@ -69,6 +70,7 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_book', id=book.id) }}" class="edit-link">Muokkaa</a>
+                    <a href="{{ url_for('download_bibtex_book', id=book.id) }}" class="download-link">Lataa BibTeX</a>
                     <form action="{{ url_for('delete_book', id=book.id) }}" method="POST" class="delete-form">
                         <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän kirjan?')">Poista</button>
                     </form>
@@ -114,6 +116,7 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_inproceedings', id=inproc.id) }}" class="edit-link">Muokkaa</a>
+                    <a href="{{ url_for('download_bibtex_inproceedings', id=inproc.id) }}" class="download-link">Lataa BibTeX</a>
                     <form action="{{ url_for('delete_inproceedings', id=inproc.id) }}" method="POST" class="delete-form">
                         <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän inproceedings-lähteen?')">Poista</button>
                     </form>
@@ -135,6 +138,7 @@
                     {% endif %}
                     <br>
                     <a href="{{ url_for('edit_misc', id=misc.id) }}" class="edit-link">Muokkaa</a>
+                    <a href="{{ url_for('download_bibtex_misc', id=misc.id) }}" class="download-link">Lataa BibTeX</a>
                     <form action="{{ url_for('delete_misc', id=misc.id) }}" method="POST" class="delete-form">
                         <button type="submit" class="delete-btn" onclick="return confirm('Haluatko varmasti poistaa tämän misc-lähteen?')">Poista</button>
                     </form>

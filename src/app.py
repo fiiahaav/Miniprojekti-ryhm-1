@@ -1,6 +1,7 @@
 import os
+import io
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import psycopg2
 from psycopg2 import extras
 from dotenv import load_dotenv
@@ -116,6 +117,45 @@ def edit_article(id):
     conn.close()
     return render_template("edit_article.html", article=article)
 
+@app.route("/download_bibtex_article/<int:id>")
+def download_bibtex_article(id):
+    """Download single article as BibTeX"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM articles WHERE id = %s", (id,))
+    article = cur.fetchone()
+    cur.close()
+    conn.close()
+    
+    if not article:
+        return "Article not found", 404
+    
+    bibtex_content = f"""@article{{article_{article['id']},
+    author = {{{article['author']}}},
+    title = {{{article['title']}}},
+    journal = {{{article['journal']}}},
+    year = {{{article['year']}}}"""
+    
+    if article.get('month'):
+        bibtex_content += f",\n  month = {{{article['month']}}}"
+    if article.get('volume'):
+        bibtex_content += f",\n  volume = {{{article['volume']}}}"
+    if article.get('number'):
+        bibtex_content += f",\n  number = {{{article['number']}}}"
+    if article.get('pages'):
+        bibtex_content += f",\n  pages = {{{article['pages']}}}"
+    if article.get('notes'):
+        bibtex_content += f",\n  note = {{{article['notes']}}}"
+    
+    bibtex_content += "\n}\n"
+    
+    filename = f"article_{article['id']}.bib"
+    return send_file(
+        io.BytesIO(bibtex_content.encode('utf-8')),
+        mimetype='text/plain',
+        as_attachment=True,
+        download_name=filename
+    )
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
@@ -177,6 +217,48 @@ def edit_book(id):
         return redirect(url_for("index"))
 
     return render_template("edit_book.html", book=book)
+
+@app.route("/download_bibtex_book/<int:id>")
+def download_bibtex_book(id):
+    """Download single book as BibTeX"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM books WHERE id = %s", (id,))
+    book = cur.fetchone()
+    cur.close()
+    conn.close()
+    
+    if not book:
+        return "Book not found", 404
+    
+    bibtex_content = f"""@book{{book_{book['id']},
+    author = {{{book['author']}}},
+    title = {{{book['title']}}},
+    publisher = {{{book['publisher']}}},
+    year = {{{book['year']}}}"""
+    
+    if book.get('editor'):
+        bibtex_content += f",\n  editor = {{{book['editor']}}}"
+    if book.get('month'):
+        bibtex_content += f",\n  month = {{{book['month']}}}"
+    if book.get('volume'):
+        bibtex_content += f",\n  volume = {{{book['volume']}}}"
+    if book.get('number'):
+        bibtex_content += f",\n  number = {{{book['number']}}}"
+    if book.get('pages'):
+        bibtex_content += f",\n  pages = {{{book['pages']}}}"
+    if book.get('notes'):
+        bibtex_content += f",\n  note = {{{book['notes']}}}"
+    
+    bibtex_content += "\n}\n"
+    
+    filename = f"book_{book['id']}.bib"
+    return send_file(
+        io.BytesIO(bibtex_content.encode('utf-8')),
+        mimetype='text/plain',
+        as_attachment=True,
+        download_name=filename
+    )
 
 @app.route("/add_inproceedings", methods=["GET", "POST"])
 def add_inproceedings():
@@ -255,6 +337,58 @@ def edit_inproceedings(id):
     conn.close()
     return render_template("edit_inproceedings.html", inproc=inproc)
 
+@app.route("/download_bibtex_inproceedings/<int:id>")
+def download_bibtex_inproceedings(id):
+    """Download single inproceedings as BibTeX"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM inproceedings WHERE id = %s", (id,))
+    inproc = cur.fetchone()
+    cur.close()
+    conn.close()
+    
+    if not inproc:
+        return "Inproceedings not found", 404
+    
+    bibtex_content = f"""@inproceedings{{inproceedings_{inproc['id']},
+  author = {{{inproc['author']}}},
+  title = {{{inproc['title']}}}"""
+    
+    if inproc.get('year'):
+        bibtex_content += f",\n  year = {{{inproc['year']}}}"
+    if inproc.get('booktitle'):
+        bibtex_content += f",\n  booktitle = {{{inproc['booktitle']}}}"
+    if inproc.get('month'):
+        bibtex_content += f",\n  month = {{{inproc['month']}}}"
+    if inproc.get('editor'):
+        bibtex_content += f",\n  editor = {{{inproc['editor']}}}"
+    if inproc.get('volume'):
+        bibtex_content += f",\n  volume = {{{inproc['volume']}}}"
+    if inproc.get('number'):
+        bibtex_content += f",\n  number = {{{inproc['number']}}}"
+    if inproc.get('series'):
+        bibtex_content += f",\n  series = {{{inproc['series']}}}"
+    if inproc.get('pages'):
+        bibtex_content += f",\n  pages = {{{inproc['pages']}}}"
+    if inproc.get('address'):
+        bibtex_content += f",\n  address = {{{inproc['address']}}}"
+    if inproc.get('organization'):
+        bibtex_content += f",\n  organization = {{{inproc['organization']}}}"
+    if inproc.get('publisher'):
+        bibtex_content += f",\n  publisher = {{{inproc['publisher']}}}"
+    if inproc.get('notes'):
+        bibtex_content += f",\n  note = {{{inproc['notes']}}}"
+    
+    bibtex_content += "\n}\n"
+    
+    filename = f"inproceedings_{inproc['id']}.bib"
+    return send_file(
+        io.BytesIO(bibtex_content.encode('utf-8')),
+        mimetype='text/plain',
+        as_attachment=True,
+        download_name=filename
+    )
+
 @app.route("/add_misc", methods=["GET", "POST"])
 def add_misc():
     if request.method == "POST":
@@ -307,6 +441,41 @@ def edit_misc(id):
     cur.close()
     conn.close()
     return render_template("edit_misc.html", misc=misc)
+
+@app.route("/download_bibtex_misc/<int:id>")
+def download_bibtex_misc(id):
+    """Download single misc as BibTeX"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM miscs WHERE id = %s", (id,))
+    misc = cur.fetchone()
+    cur.close()
+    conn.close()
+    
+    if not misc:
+        return "Misc not found", 404
+    
+    bibtex_content = f"""@misc{{misc_{misc['id']},
+    author = {{{misc['author']}}},
+    title = {{{misc['title']}}},
+    year = {{{misc['year']}}}"""
+    
+    if misc.get('month'):
+        bibtex_content += f",\n  month = {{{misc['month']}}}"
+    if misc.get('url'):
+        bibtex_content += f",\n  howpublished = {{\\url{{{misc['url']}}}}}"
+    if misc.get('notes'):
+        bibtex_content += f",\n  note = {{{misc['notes']}}}"
+    
+    bibtex_content += "\n}\n"
+    
+    filename = f"misc_{misc['id']}.bib"
+    return send_file(
+        io.BytesIO(bibtex_content.encode('utf-8')),
+        mimetype='text/plain',
+        as_attachment=True,
+        download_name=filename
+    )
 
 #täällä voi hakea lähteitä tietyllä viitetyypillä
 @app.route("/get_references")
