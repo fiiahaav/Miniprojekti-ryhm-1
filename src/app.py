@@ -477,6 +477,127 @@ def download_bibtex_misc(id):
         download_name=filename
     )
 
+@app.route("/download_bibtex_all")
+def download_bibtex_all():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM articles")
+    articles = cur.fetchall()
+    cur.execute("SELECT * FROM books")
+    books = cur.fetchall()
+    cur.execute("SELECT * FROM inproceedings")
+    inproceedings = cur.fetchall()
+    cur.execute("SELECT * FROM miscs")
+    miscs = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    if not (articles or books or inproceedings or miscs):
+        return "Refs not found", 404
+
+    bibtex_parts = []
+
+    for article in articles:
+        entry = f"""@article{{article_{article['id']},
+    author = {{{article['author']}}},
+    title = {{{article['title']}}},
+    journal = {{{article['journal']}}},
+    year = {{{article['year']}}}"""
+
+        if article.get('month'):
+            entry += f",\n  month = {{{article['month']}}}"
+        if article.get('volume'):
+            entry += f",\n  volume = {{{article['volume']}}}"
+        if article.get('number'):
+            entry += f",\n  number = {{{article['number']}}}"
+        if article.get('pages'):
+            entry += f",\n  pages = {{{article['pages']}}}"
+        if article.get('notes'):
+            entry += f",\n  note = {{{article['notes']}}}"
+
+        entry += "\n}\n"
+        bibtex_parts.append(entry)
+
+    for book in books:
+        entry = f"""@book{{book_{book['id']},
+    author = {{{book['author']}}},
+    editor = {{{book['editor']}}},
+    title = {{{book['title']}}},
+    publisher = {{{book['publisher']}}},
+    year = {{{book['year']}}}"""
+
+        if book.get('month'):
+            entry += f",\n  month = {{{book['month']}}}"
+        if book.get('volume'):
+            entry += f",\n  volume = {{{book['volume']}}}"
+        if book.get('number'):
+            entry += f",\n  number = {{{book['number']}}}"
+        if book.get('pages'):
+            entry += f",\n  pages = {{{book['pages']}}}"
+        if book.get('notes'):
+            entry += f",\n  note = {{{book['notes']}}}"
+
+        entry += "\n}\n"
+        bibtex_parts.append(entry)
+
+    for ip in inproceedings:
+        entry = f"""@inproceedings{{inproceedings_{ip['id']},
+    author = {{{ip['author']}}},
+    title = {{{ip['title']}}}"""
+
+        if ip.get('booktitle'):
+            entry += f",\n  booktitle = {{{ip['booktitle']}}}"
+        if ip.get('year'):
+            entry += f",\n  year = {{{ip['year']}}}"
+        if ip.get('month'):
+            entry += f",\n  month = {{{ip['month']}}}"
+        if ip.get('editor'):
+            entry += f",\n  editor = {{{ip['editor']}}}"
+        if ip.get('volume'):
+            entry += f",\n  volume = {{{ip['volume']}}}"
+        if ip.get('number'):
+            entry += f",\n  number = {{{ip['number']}}}"
+        if ip.get('series'):
+            entry += f",\n  series = {{{ip['series']}}}"
+        if ip.get('pages'):
+            entry += f",\n  pages = {{{ip['pages']}}}"
+        if ip.get('address'):
+            entry += f",\n  address = {{{ip['address']}}}"
+        if ip.get('organization'):
+            entry += f",\n  organization = {{{ip['organization']}}}"
+        if ip.get('publisher'):
+            entry += f",\n  publisher = {{{ip['publisher']}}}"
+        if ip.get('notes'):
+            entry += f",\n  note = {{{ip['notes']}}}"
+
+        entry += "\n}\n"
+        bibtex_parts.append(entry)
+
+    for misc in miscs:
+        entry = f"""@misc{{misc_{misc['id']},
+    author = {{{misc['author']}}},
+    title = {{{misc['title']}}},
+    year = {{{misc['year']}}}"""
+
+        if misc.get('month'):
+            entry += f",\n  month = {{{misc['month']}}}"
+        if misc.get('url'):
+            entry += f",\n  howpublished = {{\\url{{{misc['url']}}}}}"
+        if misc.get('notes'):
+            entry += f",\n  note = {{{misc['notes']}}}"
+
+        entry += "\n}\n"
+        bibtex_parts.append(entry)
+
+    bibtex_content = "\n".join(bibtex_parts)
+
+    return send_file(
+        io.BytesIO(bibtex_content.encode("utf-8")),
+        mimetype="text/plain",
+        as_attachment=True,
+        download_name="references.bib",
+    )
+
 #täällä voi hakea lähteitä tietyllä viitetyypillä
 @app.route("/get_references")
 def get_references_page():
