@@ -5,19 +5,38 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Lähde Kirjasto</h1>
+    <h1>LÄHDE KIRJASTO</h1>
 
     <h2>Kaikki lähteet (ole hyvä) ༼ つ ◕_◕ ༽つ 📚📖</h2>
 
-    <form method="POST" action="{{ url_for('add_source') }}">
-        <select name="lahde" id="lahde">
-            <option value="article">Artikkeli</option>
-            <option value="book">Kirja</option>
-            <option value="inproceedings">Inproceedings</option>
-            <option value="misc">Misc</option>
-        </select>
-        <button type="submit" id="submit-btn">Lisää lähde</button>
-    </form>
+    <div class="top-forms-bar">
+    
+        <form method="POST" action="{{ url_for('add_source') }}" class="top-column add-source-form">
+            <select name="lahde" id="lahde">
+                <option value="article">Artikkeli</option>
+                <option value="book">Kirja</option>
+                <option value="inproceedings">Inproceedings</option>
+                <option value="misc">Misc</option>
+            </select>
+            <button type="submit" id="submit-btn">Lisää Lähde</button>
+        </form>
+        
+        <form action="{{ url_for('get_references_page') }}" method="GET" class="top-column get-refs-form">
+            <button type="submit" >Hae Viitteitä</button>
+        </form>
+        
+        <!-- tähän pitää vaihtaa "all_bibtex" nappi -->
+        <form action="{{ url_for('get_references_page') }}" method="GET" class="top-column get-refs-form">
+            <button type="submit" >Lataa Kaikki BibTeX</button>
+        </form>
+
+        <div class="top-column centered-text-box">
+            <p>*Tilaa mainoksille*</p>
+            <p>Tässä voisi olla sinun mainos ( • ᴗ • )</p>
+        </div>
+    
+    </div>
+    
     <div class="flex-container">
 
         <div class="column art-col">
@@ -145,11 +164,6 @@
                 </div>
             {% endfor %}
         </div>
-
-    </div> 
-      <form action="{{ url_for('get_references_page') }}" method="GET">
-        <button type="submit" >Hae viitteitä</button>
-    </form>
     
 </body>
 </html>
