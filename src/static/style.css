@@ -207,14 +207,12 @@ strong {
 
 /* Use the new class to target the field alignment */
 .edit-form-layout .field {
-    /* Use flex to align placeholder and input side-by-side */
     display: flex;
     margin-bottom: 15px; 
     align-items: center; 
 }
 
 .edit-form-layout .field .placeholder {
-    /* Fixed width for the label/placeholder column */
     flex-basis: 200px; 
     padding-right: 15px;
     text-align: right; 
@@ -226,9 +224,7 @@ strong {
 .edit-form-layout input[type="text"], 
 .edit-form-layout input[type="number"],
 .edit-form-layout textarea {
-    /* Let the input take up the remaining space of the flex container */
     flex-grow: 1;
-    /* Limit the max width for better readability */
     max-width: 400px; 
 }
 
@@ -248,13 +244,10 @@ strong {
 /* 2. Style the group container */
 .selection-group {
     display: flex;
-    gap: 8px; /* Slightly tighter gap looks cleaner */
-    
-    /* FIX: Reduce max-width significantly to create larger, even side margins */
+    gap: 8px;
     max-width: 250px; 
     width: 100%; 
     box-sizing: border-box; 
-    
     align-items: center; 
     margin: 0; 
     padding: 0;
@@ -262,7 +255,6 @@ strong {
 
 /* 3. Style the select element */
 .selection-group select {
-    /* FIX: Give select slightly more room to fit its text and dropdown arrow cleanly */
     width: 60%; 
     flex-grow: 1; 
     
@@ -277,18 +269,12 @@ strong {
 
 /* 4. Style the button */
 .selection-group button {
-    /* FIX: Button needs to be wide enough for text, but not too wide */
     width: 40%;
-    
     height: 38px;
-    padding: 8px 10px; /* Adjusted padding to be symmetrical to select box padding */
+    padding: 8px 10px;
     margin: 0; 
     flex-shrink: 0;
-    
-    /* Prevents text from wrapping */
     white-space: nowrap; 
-    
-    /* Ensures button content is vertically centered */
     display: flex;
     justify-content: center;
     align-items: center;
