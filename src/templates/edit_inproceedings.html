@@ -7,76 +7,25 @@
 <body>
     <h1>Muokkaa inproceedings-viitettä</h1>
 
+    <p><strong>Pakolliset kentät on merkitty tähdellä (*):</strong></p>
+
     <form method="POST">
-        <div class="field">
-            <span class="placeholder">Kirjoittajan nimi *</span>
-            <input type="text" name="author" value="{{ inproc.author }}" required>
-        </div>
+        <input type="text" name="author" placeholder="Kirjoittajan nimi *" value="{{ inproc.author }}" required><br>
+        <input type="text" name="title" placeholder="Otsikko *" value="{{ inproc.title }}" required><br>
 
-        <div class="field">
-            <span class="placeholder">Otsikko *</span>
-            <input type="text" name="title" value="{{ inproc.title }}" required>
-        </div>
+        <input type="text" name="booktitle" placeholder="Kirjan otsikko" value="{{ inproc.booktitle }}"><br>
+        <input type="number" name="year" placeholder="Vuosi" value="{{ inproc.year }}"><br>
+        <input type="number" name="month" placeholder="Kuukausi" value="{{ inproc.month }}"><br>
+        <input type="text" name="editor" placeholder="Editor" value="{{ inproc.editor }}"><br>
+        <input type="text" name="volume" placeholder="Volyymi" value="{{ inproc.volume }}"><br>
+        <input type="text" name="number" placeholder="Volyymin numero" value="{{ inproc.number }}"><br>
+        <input type="text" name="series" placeholder="Konferenssijulkaisun sarja" value="{{ inproc.series }}"><br>
+        <input type="text" name="pages" placeholder="Sivunumerot" value="{{ inproc.pages }}"><br>
+        <input type="text" name="address" placeholder="Osoite" value="{{ inproc.address }}"><br>
+        <input type="text" name="organization" placeholder="Organisaatio" value="{{ inproc.organization }}"><br>
+        <input type="text" name="publisher" placeholder="Julkaisija" value="{{ inproc.publisher }}"><br>
 
-        <div class="field">
-            <span class="placeholder">Kirjan otsikko</span>
-            <input type="text" name="booktitle" value="{{ inproc.booktitle }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Vuosi</span>
-            <input type="number" name="year" value="{{ inproc.year }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Kuukausi</span>
-            <input type="number" name="month" value="{{ inproc.month }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Editor</span>
-            <input type="text" name="editor" value="{{ inproc.editor }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Volyymi</span>
-            <input type="text" name="volume" value="{{ inproc.volume }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Volyymin numero</span>
-            <input type="text" name="number" value="{{ inproc.number }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Konferenssijulkaisun sarja</span>
-            <input type="text" name="series" value="{{ inproc.series }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Sivunumerot</span>
-            <input type="text" name="pages" value="{{ inproc.pages }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Osoite</span>
-            <input type="text" name="address" value="{{ inproc.address }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Organisaatio</span>
-            <input type="text" name="organization" value="{{ inproc.organization }}">
-        </div>
-
-        <div class="field">
-            <span class="placeholder">Julkaisija</span>
-            <input type="text" name="publisher" value="{{ inproc.publisher }}">
-        </div>
-
-        <div class="field textarea-field">
-            <span class="placeholder">Muistiinpanot</span>
-            <textarea name="notes">{{ inproc.notes }}</textarea>
-        </div>
+        <textarea name="notes" placeholder="Muistiinpanot">{{ inproc.notes }}</textarea><br>
         
         <button type="submit">Tallenna muutokset</button>
     </form>

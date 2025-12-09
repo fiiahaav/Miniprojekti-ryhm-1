@@ -204,3 +204,35 @@ strong {
     background-color: #c82333;
     color: white;
 }
+
+/* Use the new class to target the field alignment */
+.edit-form-layout .field {
+    /* Use flex to align placeholder and input side-by-side */
+    display: flex;
+    margin-bottom: 15px; 
+    align-items: center; 
+}
+
+.edit-form-layout .field .placeholder {
+    /* Fixed width for the label/placeholder column */
+    flex-basis: 200px; 
+    padding-right: 15px;
+    text-align: right; 
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* Fix 2: Override Global Input Width ONLY within the Edit/Add Forms */
+.edit-form-layout input[type="text"], 
+.edit-form-layout input[type="number"],
+.edit-form-layout textarea {
+    /* Let the input take up the remaining space of the flex container */
+    flex-grow: 1;
+    /* Limit the max width for better readability */
+    max-width: 400px; 
+}
+
+/* Specific alignment for textarea fields */
+.edit-form-layout .textarea-field {
+    align-items: flex-start;
+}
