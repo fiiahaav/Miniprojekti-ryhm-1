@@ -25,17 +25,12 @@ h1, h2 {
 
 /* MASTER CLASS: Controls the look of ALL 4 top boxes (forms and divs) */
 .top-column {
-    /* 1. Layout: Equal Width */
     flex: 1 1 0%;
-    
-    /* 2. Visuals: White box with border */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
     box-sizing: border-box;
-
-    /* 3. Alignment defaults */
     width: 100%;
 }
 
@@ -68,7 +63,7 @@ form {
 
 /* --- Inputs & Buttons --- */
 input, select, textarea {
-    width: 100%; /* Changed to 100% to fill the box */
+    width: 40%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -101,7 +96,7 @@ button[type="submit"]:hover {
 
 /* Styles each individual bottom column */
 .column {
-    flex: 1 1 0%; /* Equal width */
+    flex: 1 1 0%;
     padding: 10px;
     border: 1px solid #848383; 
     border-radius: 5px;
@@ -189,4 +184,23 @@ strong {
 .delete-form .delete-btn:hover {
     background-color: #c82333;
     border-color: #bd2130;
+}
+
+.back-to-home-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid #c82333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    background-color: #dc3545;
+    color: white; 
+}
+
+.back-to-home-btn:hover {
+    background-color: #c82333;
+    color: white;
 }
