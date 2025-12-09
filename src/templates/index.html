@@ -12,20 +12,21 @@
     <div class="top-forms-bar">
     
         <form method="POST" action="{{ url_for('add_source') }}" class="top-column add-source-form">
-            <select name="lahde" id="lahde">
-                <option value="article">Artikkeli</option>
-                <option value="book">Kirja</option>
-                <option value="inproceedings">Inproceedings</option>
-                <option value="misc">Misc</option>
-            </select>
+            <div class="selection-group">
+                <select name="lahde" id="lahde">
+                    <option value="article">Artikkeli</option>
+                    <option value="book">Kirja</option>
+                    <option value="inproceedings">Inproceedings</option>
+                    <option value="misc">Misc</option>
+                </select>
             <button type="submit" id="submit-btn">Lisää Lähde</button>
+            </div>
         </form>
         
         <form action="{{ url_for('get_references_page') }}" method="GET" class="top-column get-refs-form">
             <button type="submit" >Hae Viitteitä</button>
         </form>
         
-        <!-- tähän pitää vaihtaa "all_bibtex" nappi -->
         <form action="{{ url_for('download_bibtex_all') }}" method="GET" class="top-column get-refs-form">
             <button type="submit" >Lataa Kaikki BibTeX</button>
         </form>

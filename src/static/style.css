@@ -1,16 +1,16 @@
 /* --- Global Styles --- */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f8f8ff;
+    background-color: #fff3d6;
     color: #333;
     margin: 20px;
     padding: 0;
 }
 
 h1, h2 {
-    color: #0056b3;
+    color: #0400c4;
     border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     font-weight: 700;
 }
 
@@ -26,7 +26,7 @@ h1, h2 {
 /* MASTER CLASS: Controls the look of ALL 4 top boxes (forms and divs) */
 .top-column {
     flex: 1 1 0%;
-    background-color: #fff;
+    background-color: #f2e7cd;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
@@ -72,7 +72,7 @@ input, select, textarea {
 }
 
 button[type="submit"] {
-    background-color: #007bff;
+    background-color: #0400c4;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -109,7 +109,7 @@ button[type="submit"]:hover {
 
 /* --- Source Entry (Individual Cards) --- */
 .source-entry {
-    background-color: #fff;
+    background-color: #fff8e7;
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 10px;
@@ -235,4 +235,61 @@ strong {
 /* Specific alignment for textarea fields */
 .edit-form-layout .textarea-field {
     align-items: flex-start;
+}
+/* --- The Absolute Final Symmetry Fix --- */
+
+/* 1. Ensure the form is centered (No change needed here) */
+.add-source-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* 2. Style the group container */
+.selection-group {
+    display: flex;
+    gap: 8px; /* Slightly tighter gap looks cleaner */
+    
+    /* FIX: Reduce max-width significantly to create larger, even side margins */
+    max-width: 250px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    
+    align-items: center; 
+    margin: 0; 
+    padding: 0;
+}
+
+/* 3. Style the select element */
+.selection-group select {
+    /* FIX: Give select slightly more room to fit its text and dropdown arrow cleanly */
+    width: 60%; 
+    flex-grow: 1; 
+    
+    height: 38px;
+    padding: 8px 10px;
+    margin: 0; 
+    
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 4. Style the button */
+.selection-group button {
+    /* FIX: Button needs to be wide enough for text, but not too wide */
+    width: 40%;
+    
+    height: 38px;
+    padding: 8px 10px; /* Adjusted padding to be symmetrical to select box padding */
+    margin: 0; 
+    flex-shrink: 0;
+    
+    /* Prevents text from wrapping */
+    white-space: nowrap; 
+    
+    /* Ensures button content is vertically centered */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
