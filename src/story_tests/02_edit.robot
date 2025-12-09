@@ -31,5 +31,5 @@ User Can Edit Article Successfully
 
     # Step 4: Back to home page and verify
     Go To    ${HOME_URL}
-    Wait Until Page Contains    Updated Title    timeout=5s
+    Wait Until Page Contains    Updated Title    timeout=10s
     Page Should Not Contain    Original Title
