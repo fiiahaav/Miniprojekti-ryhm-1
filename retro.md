@@ -47,3 +47,28 @@ Continue:
 - Kommunikointi
 
 - Maanantai tapaamiset
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sprint 3 Retrospektiivi:
+“Start, Stop, Continue”
+
+Start:
+
+- Testikattavuuden seuranta aktiivisemmin
+
+- Pariohjelmointi vaikeimmissa tehtävissä
+
+- Aikaisempi palautteen pyytäminen tiimiltä
+
+Stop:
+
+- Viime hetken isot muutokset
+
+Continue:
+
+- Selkeä työjako
+
+- Hyvä tiimityöskentely
+
+- Sprint back log aktiivisempi päivitys
