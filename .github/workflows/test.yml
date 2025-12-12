@@ -1,4 +1,4 @@
-name: Run Robot Test
+name: CI Pipeline
 
 on:
   push:
