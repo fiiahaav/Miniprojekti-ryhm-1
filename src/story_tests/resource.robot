@@ -3,31 +3,58 @@ Library    SeleniumLibrary
 Library    OperatingSystem
 
 *** Variables ***
-${SERVER}    localhost:5000
-${HOME_URL}    http://${SERVER}
-${BROWSER}    chrome
-${HEADLESS}    false
-${DELAY}    0.5 seconds
+${SERVER}           localhost:5000
+${HOME_URL}         http://${SERVER}
+${BROWSER}          chrome
+${HEADLESS}         false
+${DELAY}            0.5 seconds
+
+# Unified download directory (used by all tests)
+${DOWNLOAD_DIR}     ${OUTPUT DIR}${/}browser_downloads
+
 
 *** Keywords ***
 Open Browser To Home
+    # Ensure download directory exists
+    Create Directory    ${DOWNLOAD_DIR}
+
+    # --- Chrome Options ---
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+
+    # Download preferences
+    &{prefs}=    Create Dictionary
+    ...    download.default_directory=${DOWNLOAD_DIR}
+    ...    download.prompt_for_download=False
+    ...    download.directory_upgrade=True
+    ...    safebrowsing.enabled=True
+    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+
+    # Basic browser flags
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
     Call Method    ${options}    add_argument    --disable-gpu
+
+    # Headless support (old-style compatible)
     Run Keyword If    '${HEADLESS}' == 'true'    Call Method    ${options}    add_argument    --headless
-    Run Keyword If    '${HEADLESS}' == 'true'    Set Selenium Speed    0 seconds
+
+    # Visual slowing for interactive mode
     Run Keyword If    '${HEADLESS}' != 'true'    Set Selenium Speed    ${DELAY}
+
+    # Open browser with configured download directory
     Open Browser    ${HOME_URL}    ${BROWSER}    options=${options}
+    Maximize Browser Window
+
 
 Home Page Should Be Open
     Title Should Be    Lähde Kirjasto
+
 
 Click Add Source And Navigate
     [Arguments]    ${type}
     Select From List By Value    id=lahde    ${type}
     Click Button    id=submit-btn
     Wait Until Location Contains    /add_${type}    timeout=5s
+
 
 Fill Article Form
     Input Text    name=author    John Doe
@@ -41,6 +68,7 @@ Fill Article Form
     Input Text    name=notes     Sample notes
     Click Button   xpath=//button[contains(text(),'Lisää')]
 
+
 Fill Book Form
     Input Text    name=author    Jane Smith
     Input Text    name=title     Test Book
@@ -53,6 +81,7 @@ Fill Book Form
     Input Text    name=pages     200
     Input Text    name=notes     Book notes
     Click Button   xpath=//button[contains(text(),'Lisää')]
+
 
 Fill Inproceedings Form
     Input Text    name=author    Bob Johnson
@@ -71,6 +100,7 @@ Fill Inproceedings Form
     Input Text    name=notes     Proc notes
     Click Button   xpath=//button[contains(text(),'Lisää')]
 
+
 Fill Misc Form
     Input Text    name=author    Alice Brown
     Input Text    name=title     Test Misc
@@ -80,7 +110,13 @@ Fill Misc Form
     Input Text    name=notes     Misc notes
     Click Button   xpath=//button[contains(text(),'Lisää')]
 
+
 Verify Item Visible On Home
     [Arguments]    ${text}
     Go To    ${HOME_URL}
     Page Should Contain    ${text}
+
+
+Get Selenium Session
+    [Documentation]    Compatibility helper for download tests (no driver object needed).
+    No Operation
