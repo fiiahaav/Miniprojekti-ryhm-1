@@ -1,8 +1,8 @@
-name: Run Robot Test
+name: CI Pipeline
 
 on:
   push:
-    branches: [ robot-test ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
