@@ -9,6 +9,8 @@ Ohjelmistotuotanto miniprojekti - Viitteidenhallintasovellus
 
 [Testikattavuusraportti](http://htmlpreview.github.io/?https://github.com/fiiahaav/Miniprojekti-ryhm-1/blob/testit/index.html)
 
+[Loppuraportti](raportti.md)
+
 ## Asennus ja käyttöönotto
 
 ### 1. Vaatimukset
