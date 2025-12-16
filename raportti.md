@@ -3,7 +3,7 @@
 ## 1. Osallistujat
 
 *   [Asmo Koivula]
-*   [Nimi 2]
+*   [Touko Ristiranta]
 *   [Nimi 3]
 *   [Nimi 4]
 *   [Nimi 5]
@@ -14,6 +14,7 @@
 
 ### 2.1. Tekniset haasteet
 - **Sprintti 3:** Testikattavuuden seuranta ei ollut riittävän aktiivista, mikä vaikeutti koodin laadun varmistamista.
+- **Sprintti 1-2:** Kesti hetki saada projekti ja tietokanta toimimaan kaikilla kunnolla.
 
 ### 2.2. Prosessiin liittyvät ongelmat
 - **Sprintti 1:** Työnjako oli epäselvä, eikä ollut selkeää käsitystä siitä, kuka tekee mitäkin. Product backlogia ja sprint backlogia ei päivitetty riittävästi.
@@ -42,6 +43,7 @@
 - **Testikattavuuden seuranta:** Seuraisimme testikattavuutta aktiivisemmin alusta alkaen.
 - **Pariohjelmointi:** Hyödyntäisimme parityöskentelyä enemmän erityisesti vaikeimmissa tehtävissä.
 - **Dokumentointi:** Panostaisimme parempaan dokumentointiin projektin alusta lähtien.
+- **Suunnittelu:** Sprinttejä olisi voinut suunnitella paremmin. Jotkut asiat jouduttiin muuttamaan myöhemmin uudelleen.
 
 ---
 
@@ -57,4 +59,4 @@
 - 
 
 ### 4.3. Asiat joita olisimme halunneet oppia
--
+- **Monipuolisuus:** Kaikki keskittyi saman tyyppisiin asioihin projektin ajan. Olisi voinut jakaa tehtäviä niin, että jokainen pääsee tekemään vähän tietokantaa, testejä, html-tiedostoja.
