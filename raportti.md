@@ -4,7 +4,7 @@
 
 *   [Asmo Koivula]
 *   [Touko Ristiranta]
-*   [Nimi 3]
+*   [Björn Khermik]
 *   [Nimi 4]
 *   [Nimi 5]
 
@@ -15,6 +15,7 @@
 ### 2.1. Tekniset haasteet
 - **Sprintti 3:** Testikattavuuden seuranta ei ollut riittävän aktiivista, mikä vaikeutti koodin laadun varmistamista.
 - **Sprintti 1-2:** Kesti hetki saada projekti ja tietokanta toimimaan kaikilla kunnolla.
+- **Sprintti 1:** Piti alussa opetella paljon uutta, ennen kuin pysty aloittaa rakentamaan ohjelmaa.
 
 ### 2.2. Prosessiin liittyvät ongelmat
 - **Sprintti 1:** Työnjako oli epäselvä, eikä ollut selkeää käsitystä siitä, kuka tekee mitäkin. Product backlogia ja sprint backlogia ei päivitetty riittävästi.
@@ -24,6 +25,8 @@
 
 ### 2.3. Projektityöskentely ja tiimidynamiikka
 - **Sprintti 1:** Kommunikointi tiimin sisällä oli puutteellista tai sitä ei ollut lainkaan, mikä hidasti projektin etenemistä.
+- **Sprintti 2:** Työnjako ja yhdessä työskentely helpottui, kun tavattiin kampuksella.
+- **Sprintti 2:** Parikoodaaminen oli tuottavaa ja molemmat osa puolet oppi paremmin sen aikana.
 - **Sprintti 3:** Palautteen pyytäminen tiimiltä olisi voinut tapahtua aikaisemmin.
 
 ---
