@@ -7,7 +7,7 @@ Ohjelmistotuotanto miniprojekti - Viitteidenhallintasovellus
 
 [Sprint-backlog](https://docs.google.com/spreadsheets/d/1dKQkSXH3QKJ_fpU7lTmOB-eHB5XSrer6C5ilD1vwazk/edit?gid=8#gid=8)
 
-[Testikattavuusraportti](http://htmlpreview.github.io/?https://github.com/fiiahaav/Miniprojekti-ryhm-1/blob/testit/index.html)
+[Testikattavuusraportti](http://htmlpreview.github.io/?https://github.com/fiiahaav/Miniprojekti-ryhm-1/blob/main/htmlcov/index.html)
 
 [Loppuraportti](raportti.md)
 
