@@ -5,7 +5,7 @@
 *   [Asmo Koivula]
 *   [Touko Ristiranta]
 *   [Björn Khermik]
-*   [Nimi 4]
+*   [Jaakko Roivas]
 *   [Nimi 5]
 
 ---
@@ -59,7 +59,7 @@
 - **Retrospektiivit:** Opimme hyödyntämään "Start, Stop, Continue" -metodia tiimin toiminnan parantamiseen.
 
 ### 4.2. Turhaksi koetut asiat
-- 
+- **Inspect & Adapt:** Osa retrospektiivien havainnoista jäi ilman konkreettisia jatkotoimenpiteitä.
 
 ### 4.3. Asiat joita olisimme halunneet oppia
 - **Monipuolisuus:** Kaikki keskittyi saman tyyppisiin asioihin projektin ajan. Olisi voinut jakaa tehtäviä niin, että jokainen pääsee tekemään vähän tietokantaa, testejä, html-tiedostoja.
