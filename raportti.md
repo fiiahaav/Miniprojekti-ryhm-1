@@ -7,6 +7,7 @@
 *   [Björn Khermik]
 *   [Jaakko Roivas]
 *   [Fiia Haavisto]
+*   [Iiro Laitinen]
 
 ---
 
