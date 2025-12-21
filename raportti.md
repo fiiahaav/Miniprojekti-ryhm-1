@@ -6,7 +6,7 @@
 *   [Touko Ristiranta]
 *   [Björn Khermik]
 *   [Jaakko Roivas]
-*   [Nimi 5]
+*   [Fiia Haavisto]
 
 ---
 
